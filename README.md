@@ -27,7 +27,7 @@ Or, for Windows (Visual Studio):
     cd visualstudio
     cmake -G "Visual Studio 10 2010" ..
 
-This will build a static library to build against as `libMragpp.a`, `libMragpp.dylib` or `libMragpp.lib`, depending on your platform.
+This will build a static library to build against as `libMragpp.so`, `libMragpp.dylib` or `libMragpp.dll`, depending on your platform.
 
 License
 =======
