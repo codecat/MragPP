@@ -1,5 +1,4 @@
-Mrag++
-======
+# Mrag++ [![Build Status](https://travis-ci.org/AngeloG/MragPP.svg?branch=master)](https://travis-ci.org/AngeloG/MragPP)
 
 Mrag++ is a C++ library for game development in SDL2. Its structure is loosely based on the concept of XNA (or Monogame).
 
