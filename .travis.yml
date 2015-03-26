@@ -2,5 +2,11 @@ language: cpp
 compiler:
   - clang
   - gcc
-install: sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
-script: mkdir build && cd build && cmake .. && make
+install:
+  - sudo add-apt-repository ppa:zoogie/sdl2-snapshots -y
+  - sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
