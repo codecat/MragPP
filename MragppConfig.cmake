@@ -1,0 +1,6 @@
+# Defines the following variables:
+#  MRAGPP_INCLUDE_DIRS
+#  MRAGPP_LIBRARY
+
+set(MRAGPP_INCLUDE_DIRS ${SELF_DIR})
+set(MRAGPP_LIBRARY "${CMAKE_SOURCE_DIR}/lib")
