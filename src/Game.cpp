@@ -8,10 +8,6 @@
 #include <Psapi.h>
 #endif
 
-#if WINDOWS
-#include "resource.h"
-#endif
-
 #if _DEBUG && WINDOWS
 #pragma comment(lib, "psapi.lib")
 #endif
@@ -42,11 +38,7 @@ CGame::~CGame()
 
 void CGame::LoadSystemFont(int iSize)
 {
-#if WINDOWS
-  gam_fntSystem.LoadFromResource(IDR_FONT1, iSize);
-#else
   gam_fntSystem.Load(gam_strSystemFont, iSize);
-#endif
 }
 
 void CGame::Run()
