@@ -6,7 +6,7 @@ add_subdirectory(Scratch)
 
 file(GLOB_RECURSE box2d_sources "Box2D/*.cpp" "Box2D/*.c" "Box2D/*.h")
 
-add_library(Mragpp SHARED
+add_library(Mragpp
 	Function.h
 	SpecialMath.h
 	AnimationSheet.cpp AnimationSheet.h
