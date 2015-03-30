@@ -29,9 +29,10 @@ CGame::CGame()
   gam_iHeight = 768;
   gam_ulWindowFlags = 0;
   gam_bRunning = true;
+#if !WINDOWS
+  gam_strSystemFont = "System.ttf";
+#endif
   Input.Initialize(this);
-
-  LoadSystemFont(14);
 }
 
 CGame::~CGame()
@@ -44,7 +45,7 @@ void CGame::LoadSystemFont(int iSize)
 #if WINDOWS
   gam_fntSystem.LoadFromResource(IDR_FONT1, iSize);
 #else
-  gam_fntSystem.Load("System.ttf", iSize);
+  gam_fntSystem.Load(gam_strSystemFont, iSize);
 #endif
 }
 

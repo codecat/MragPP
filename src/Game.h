@@ -24,6 +24,9 @@ public:
   CInput Input;
   CPaths Paths;
 
+#if !WINDOWS
+  Scratch::CString gam_strSystemFont;
+#endif
   CFont gam_fntSystem;
 
 public:
