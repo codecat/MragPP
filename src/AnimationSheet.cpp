@@ -191,8 +191,8 @@ Vector2i CAnimation::Render(const Vector2f &vPos, const Vector2f &vSize, CAnimat
   rectSrc.w = pAnim->ani_vSize(1);
   rectSrc.h = pAnim->ani_vSize(2);
 
-  if(fOverX != 0) { rectDest.w = fOverX; }
-  if(fOverY != 0) { rectDest.h = fOverY; }
+  if(fOverX > 0) { rectDest.w = fOverX; }
+  if(fOverY > 0) { rectDest.h = fOverY; }
 
   if(pAnim->ani_pSheet->ans_bCenter) {
     rectDest.x -= rectDest.w / 2.0f;
@@ -207,8 +207,8 @@ Vector2i CAnimation::Render(const Vector2f &vPos, const Vector2f &vSize, CAnimat
   }
 
   // hmm..
-  if(fOverX != 0) { fWidth = fOverX; }
-  if(fOverY != 0) { fHeight = fOverY; }
+  if(fOverX > 0) { fWidth = fOverX; }
+  if(fOverY > 0) { fHeight = fOverY; }
 
   return Vector2i((int)fWidth, (int)fHeight);
 }
