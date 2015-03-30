@@ -25,9 +25,7 @@ CGame::CGame()
   gam_iHeight = 768;
   gam_ulWindowFlags = 0;
   gam_bRunning = true;
-#if !WINDOWS
   gam_strSystemFont = "System.ttf";
-#endif
   Input.Initialize(this);
 }
 
