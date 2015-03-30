@@ -1,0 +1,3 @@
+[submodule "src/Scratch"]
+	path = src/Scratch
+	url = https://github.com/AngeloG/Scratch
