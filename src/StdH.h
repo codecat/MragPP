@@ -12,7 +12,7 @@
 #endif
 #endif
 
-#include "Scratch/Scratch.h"
+#include <Scratch/Scratch.h>
 
 #define MRAGPP_NAMESPACE_BEGIN namespace Mragpp {
 #define MRAGPP_NAMESPACE_END }
