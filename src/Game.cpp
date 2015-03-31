@@ -27,6 +27,7 @@ CGame::CGame()
   gam_bRunning = true;
   gam_strSystemFont = "System.ttf";
   Input.Initialize(this);
+  Content.Initialize(this);
 }
 
 CGame::~CGame()

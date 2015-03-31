@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "Paths.h"
+#include "ContentRegister.h"
 
 MRAGPP_NAMESPACE_BEGIN;
 
@@ -23,6 +24,7 @@ public:
   CRenderer Renderer;
   CInput Input;
   CPaths Paths;
+  CContentRegister Content;
 
   Scratch::CString gam_strSystemFont;
   CFont gam_fntSystem;

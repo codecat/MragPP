@@ -11,6 +11,7 @@ add_library(Mragpp
 	SpecialMath.h
 	AnimationSheet.cpp AnimationSheet.h
 	Colors.cpp Colors.h
+	ContentRegister.cpp ContentRegister.h
 	Easing.cpp Easing.h
 	Engine.cpp Engine.h
 	Font.cpp Font.h

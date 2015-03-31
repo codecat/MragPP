@@ -87,6 +87,8 @@ private:
   void Load(XmlTag &tagAnim);
 };
 
+class CGame;
+
 class MRAGPP_EXPORT CAnimationSheet
 {
 public:
@@ -103,12 +105,12 @@ public:
 
 public:
   CAnimationSheet();
-  CAnimationSheet(CRenderer &renderer, const Scratch::CString &strFilename);
+  CAnimationSheet(CGame* pGame, const Scratch::CString &strFilename);
   ~CAnimationSheet();
 
   CAnimation* GetAnimation(const Scratch::CString &strName);
 
-  void Load(CRenderer &renderer, const Scratch::CString &strFilename);
+  void Load(CGame* pGame, const Scratch::CString &strFilename);
   void Unload();
 
   void SetAlphaMult(const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha);
@@ -131,10 +133,10 @@ public:
   CAnimationSheetCollection();
   ~CAnimationSheetCollection();
 
-  void Load(CRenderer& renderer, const Scratch::CString &strFilename);
+  void Load(CGame* pGame, const Scratch::CString &strFilename);
   void Unload();
 
-  void Add(CRenderer& renderer, const Scratch::CString &strFilename);
+  void Add(CGame* pGame, const Scratch::CString &strFilename);
   CAnimationSheet* GetSheet(const Scratch::CString &strName);
 
   void SetAlphaMult(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha);

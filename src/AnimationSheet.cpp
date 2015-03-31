@@ -1,6 +1,7 @@
 #include "StdH.h"
 #include "AnimationSheet.h"
 #include "Renderer.h"
+#include "Game.h"
 
 using namespace Scratch;
 
@@ -224,9 +225,9 @@ CAnimationSheet::CAnimationSheet()
   ans_bCenter = FALSE;
 }
 
-CAnimationSheet::CAnimationSheet(CRenderer &renderer, const CString &strFilename)
+CAnimationSheet::CAnimationSheet(CGame* pGame, const CString &strFilename)
 {
-  Load(renderer, strFilename);
+  Load(pGame, strFilename);
   ans_bCenter = FALSE;
 }
 
@@ -246,13 +247,13 @@ CAnimation* CAnimationSheet::GetAnimation(const Scratch::CString &strName)
   return 0;
 }
 
-void CAnimationSheet::Load(CRenderer &renderer, const CString &strFilename)
+void CAnimationSheet::Load(CGame* pGame, const CString &strFilename)
 {
-  ans_pRenderer = &renderer;
+  ans_pRenderer = &pGame->Renderer;
 
   ASSERT(ans_pTexture == 0 && ans_pXml == 0);
   ans_strTextureFilename = strFilename;
-  ans_pTexture = new CTexture(renderer, strFilename);
+  ans_pTexture = &(pGame->Content.Texture(strFilename));
   ans_pXml = new XmlFile(strFilename.Replace(".png", ".xml"));
 
   XmlTag* xmlSheet = ans_pXml->Root->FindChildByName("sheet");
@@ -272,10 +273,8 @@ void CAnimationSheet::Load(CRenderer &renderer, const CString &strFilename)
 
 void CAnimationSheet::Unload()
 {
-  if(ans_pTexture != 0) {
-    delete ans_pTexture;
-    ans_pTexture = 0;
-  }
+  //NOTE: Don't delete texture here because this comes from the game's content register!
+  ans_pTexture = 0;
   if(ans_pXml != 0) {
     delete ans_pXml;
     ans_pXml = 0;
@@ -393,7 +392,7 @@ CAnimationSheetCollection::~CAnimationSheetCollection()
   Unload();
 }
 
-void CAnimationSheetCollection::Load(CRenderer& renderer, const CString &strFilename)
+void CAnimationSheetCollection::Load(CGame* pGame, const CString &strFilename)
 {
   Unload();
 
@@ -408,7 +407,7 @@ void CAnimationSheetCollection::Load(CRenderer& renderer, const CString &strFile
   pSheets->FindChildrenByName("sheet", sheets);
 
   for(int i=0; i<sheets.Count(); i++) {
-    Add(renderer, sheets[i].Value);
+    Add(pGame, sheets[i].Value);
   }
 }
 
@@ -420,10 +419,10 @@ void CAnimationSheetCollection::Unload()
   }
 }
 
-void CAnimationSheetCollection::Add(CRenderer& renderer, const CString &strFilename)
+void CAnimationSheetCollection::Add(CGame* pGame, const CString &strFilename)
 {
   CAnimationSheet &sheet = asc_saSheets.Push();
-  sheet.Load(renderer, strFilename);
+  sheet.Load(pGame, strFilename);
 }
 
 CAnimationSheet* CAnimationSheetCollection::GetSheet(const CString &strName)
