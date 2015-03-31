@@ -100,6 +100,7 @@ public:
   XmlFile* ans_pXml;
   CRenderer* ans_pRenderer;
   BOOL ans_bCenter;
+  BOOL ans_bLoaded;
 
   Scratch::CString ans_strLatestAnimation;
 

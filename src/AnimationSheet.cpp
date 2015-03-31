@@ -223,6 +223,7 @@ CAnimationSheet::CAnimationSheet()
   ans_pXml = 0;
   ans_pRenderer = 0;
   ans_bCenter = FALSE;
+  ans_bLoaded = FALSE;
 }
 
 CAnimationSheet::CAnimationSheet(CGame* pGame, const CString &strFilename)
@@ -269,6 +270,8 @@ void CAnimationSheet::Load(CGame* pGame, const CString &strFilename)
     anim.ani_pSheet = this;
     anim.Load(tag);
   }
+
+  ans_bLoaded = TRUE;
 }
 
 void CAnimationSheet::Unload()
@@ -280,6 +283,7 @@ void CAnimationSheet::Unload()
     ans_pXml = 0;
   }
   ans_saHues.Clear();
+  ans_bLoaded = FALSE;
 }
 
 void CAnimationSheet::SetAlphaMult(const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha)
