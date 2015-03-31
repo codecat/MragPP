@@ -13,6 +13,22 @@ CRectangle::CRectangle()
   anchorInCenter = false;
 }
 
+CRectangle::CRectangle(Vector2f vPos, Vector2f vSize)
+{
+  x = vPos(1); y = vPos(2);
+  w = vSize(1); h = vSize(2);
+  rotation = 0;
+  anchorInCenter = false;
+}
+
+CRectangle::CRectangle(Vector2f vPos, Vector2f vSize, float fRot)
+{
+  x = vPos(1); y = vPos(2);
+  w = vSize(1); h = vSize(2);
+  rotation = fRot;
+  anchorInCenter = false;
+}
+
 CRectangle::CRectangle(float fX, float fY, float fW, float fH)
 {
   x = fX; y = fY;
@@ -130,6 +146,12 @@ bool CRectangle::Intersects(const CRectangle &other)
   if(PointInPolygon(otherPoints[3], points, 4)) {
     return true; }
 
+  /**
+   * NOTE: This should be fixed later, due to a special case where two rectangles of the same size are on the same
+   *       centered position, one of which is rotated at 45 degrees. Right now, this doesn't seem to work as it
+   *       should, so we need to figure out the bug in lineSegmentsIntersect() or re-implement the function entirely.
+   */
+  /*
   if (mthLineSegmentsIntersect(points[0], points[1], otherPoints[0], otherPoints[1]) ||
       mthLineSegmentsIntersect(points[1], points[2], otherPoints[0], otherPoints[1]) ||
       mthLineSegmentsIntersect(points[2], points[3], otherPoints[0], otherPoints[1]) ||
@@ -149,6 +171,7 @@ bool CRectangle::Intersects(const CRectangle &other)
   ) {
     return true;
   }
+  */
 
   return false;
 }
@@ -163,37 +186,63 @@ SDL_Rect CRectangle::GetSDLRect() const
   return ret;
 }
 
+bool pointInPolygonOnSegment(const Vector2f &p, const Vector2f &q, const Vector2f &r)
+{
+  return q(1) <= mthMax(p(1), r(1)) && q(1) >= mthMin(p(1), r(1)) &&
+         q(2) <= mthMax(p(2), r(2)) && q(2) >= mthMin(p(2), r(2));
+}
+
+int pointInPolygonOrientation(const Vector2f &p, const Vector2f &q, const Vector2f &r)
+{
+  float val = (q(2) - p(2)) * (r(1) - q(1)) - (q(1) - p(1)) * (r(2) - q(2));
+  if(val == 0) {
+    return 0;
+  } else if(val > 0) {
+    return 1;
+  }
+  return 2;
+}
+
+bool pointInPolygonDoIntersect(const Vector2f &p1, const Vector2f &q1, const Vector2f &p2, const Vector2f &q2)
+{
+  int o1 = pointInPolygonOrientation(p1, q1, p2);
+  int o2 = pointInPolygonOrientation(p1, q1, q2);
+  int o3 = pointInPolygonOrientation(p2, q2, p1);
+  int o4 = pointInPolygonOrientation(p2, q2, q1);
+  return
+    (o1 != o2 && o3 != o4) ||
+    (o1 == 0 && pointInPolygonOnSegment(p1, p2, q1)) ||
+    (o2 == 0 && pointInPolygonOnSegment(p1, q2, q1)) ||
+    (o3 == 0 && pointInPolygonOnSegment(p2, p1, q2)) ||
+    (o4 == 0 && pointInPolygonOnSegment(p2, q1, q2));
+}
+
+/**
+ * Return whether the given point `p` is in the given polygon `poly`.
+ * Uses above pointInPolygon-prefixed functions as well.
+ * Source: http://www.geeksforgeeks.org/how-to-check-if-a-given-point-lies-inside-a-polygon/
+ * This appears to work a lot better than what we were using before: http://alienryderflex.com/polygon/
+ */
 bool CRectangle::PointInPolygon(const Vector2f &p, const Vector2f* poly, int vertices)
 {
   if(vertices < 3) {
     return false;
   }
 
-  Vector2f p1, p2;
-  bool inside = false;
-
-  Vector2f oldPoint = poly[vertices-1];
-
-  for(int i=0; i<vertices; i++) {
-    const Vector2f &newPoint = poly[i];
-
-    if(newPoint(1) > oldPoint(1)) {
-      p1 = oldPoint;
-      p2 = newPoint;
-    } else {
-      p1 = newPoint;
-      p2 = oldPoint;
+  Vector2f extreme(10000, p(2));
+  int count = 0;
+  int i = 0;
+  do {
+    int next = (i + 1) % vertices;
+    if(pointInPolygonDoIntersect(poly[i], poly[next], p, extreme)) {
+      if(pointInPolygonOrientation(poly[i], p, poly[next]) == 0) {
+        return pointInPolygonOnSegment(poly[i], p, poly[next]);
+      }
+      count++;
     }
-
-    // The more I look at the if statement, the less I understand it.. wtf, Harry? ~ang
-    if((newPoint(1) < p(1)) == (p(1) <= oldPoint(1))
-      && ((long long)p(2) - (long long)p1(2)) * (long long)(p2(1) - p1(1))
-       < ((long long)p2(2) - (long long)p1(2)) * (long long)(p(1) - p1(1))) {
-      inside = !inside;
-    }
-    oldPoint = newPoint;
-  }
-  return inside;
+    i = next;
+  } while(i != 0);
+  return count & 1;
 }
 
 MRAGPP_NAMESPACE_END;

@@ -20,6 +20,8 @@ public:
 
 public:
   CRectangle();
+  CRectangle(Vector2f vPos, Vector2f vSize);
+  CRectangle(Vector2f vPos, Vector2f vSize, float fRot);
   CRectangle(float fX, float fY, float fW, float fH);
   CRectangle(float fX, float fY, float fW, float fH, float fRot);
   CRectangle(const SDL_Rect &rect);
