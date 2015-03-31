@@ -20,6 +20,13 @@ void CContentRegister::Initialize(CGame* pGame)
 	cnt_pGame = pGame;
 }
 
+void CContentRegister::Clear()
+{
+	cnt_dicTextures.Clear();
+	cnt_dicFonts.Clear();
+	cnt_dicAnimations.Clear();
+}
+
 CTexture &CContentRegister::Texture(const Scratch::CFilename &fnm)
 {
 	if(cnt_dicTextures.HasKey(fnm)) {

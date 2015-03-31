@@ -23,6 +23,7 @@ public:
 	~CContentRegister();
 
 	void Initialize(CGame* pGame);
+	void Clear();
 
 	CTexture &Texture(const Scratch::CFilename &fnm);
 	CFont &Font(const Scratch::CFilename &fnm, int iPtSize);
