@@ -88,7 +88,8 @@ inline Vector2f IntersectionPoint(const Vector2f &a1, const Vector2f &a2, const 
   // from https://en.wikipedia.org/wiki/Line-line_intersection
   return Vector2f(
     ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)),
-    ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)));
+    ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4))
+  );
 }
 
 inline bool mthLineSegmentsIntersect(const Vector2f &a1, const Vector2f &a2, const Vector2f &b1, const Vector2f &b2)
