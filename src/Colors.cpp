@@ -57,7 +57,7 @@ inline rgb hsv2rgb(const hsv &hsv)
   float s = mthClamp(hsv.s / 100.0f, 0.0f, 1.0f);
   float v = mthClamp(hsv.v / 100.0f, 0.0f, 1.0f);
   float c = v * s;
-  float x = c * (1 - abs(fmod(h / 60.0f, 2) - 1));
+  float x = c * (1 - fabs(fmod(h / 60.0f, 2) - 1));
   float r = 0, g = 0, b = 0;
   if     (h >=   0 && h <  60) { r = c; g = x; }
   else if(h >=  60 && h < 120) { r = x; g = c; }
