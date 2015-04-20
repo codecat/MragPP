@@ -128,6 +128,7 @@ void CRenderer::FillRectangle(const CRectangle &rect)
   SDL_Rect r = rect.GetSDLRect();
   TransformPosition(r.x, r.y, r.w, r.h);
 
+  //TODO: Support rect rotation here
   SDL_SetRenderDrawBlendMode(ren_pRenderer, SDL_BLENDMODE_BLEND);
   SDL_RenderFillRect(ren_pRenderer, &r);
 }
@@ -314,6 +315,11 @@ void CRenderer::PutTexture(CTexture &texture, const CRectangle &rectDest, const 
 {
   SDL_Rect dest = rectDest.GetSDLRect();
   const SDL_Rect src = rectSrc.GetSDLRect();
+
+  if(rectDest.anchorInCenter) {
+    dest.x -= dest.w / 2;
+    dest.y -= dest.h / 2;
+  }
 
   TransformPosition(dest.x, dest.y, dest.w, dest.h);
 
