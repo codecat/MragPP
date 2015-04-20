@@ -147,9 +147,10 @@ void CRenderer::PutRectangle(float x, float y, float width, float height)
 
 void CRenderer::PutRectangle(const CRectangle &rect)
 {
-  SDL_Rect r = rect.GetSDLRect();
-  TransformPosition(r.x, r.y, r.w, r.h);
-  SDL_RenderDrawRect(ren_pRenderer, &r);
+  Vector2f points[5];
+  rect.GetRotatedPosArray(points);
+  points[4] = points[0];
+  PutLines(points, 5);
 }
 
 void CRenderer::PutLine(float ax, float ay, float bx, float by)
