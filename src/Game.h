@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "Paths.h"
 #include "ContentRegister.h"
+#include "Message.h"
 
 MRAGPP_NAMESPACE_BEGIN;
 
@@ -29,6 +30,8 @@ public:
   Scratch::CString gam_strSystemFont;
   CFont gam_fntSystem;
 
+  bool gam_bCatchMessages;
+
 public:
   CGame();
   virtual ~CGame();
@@ -43,6 +46,8 @@ public:
 
   virtual void Update();
   virtual void Render();
+
+  virtual bool MessageLoop(const CMessage &m);
 };
 
 MRAGPP_NAMESPACE_END;

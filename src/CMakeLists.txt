@@ -19,6 +19,7 @@ add_library(Mragpp
 	Input.cpp Input.h InputKeys.h
 	Line.cpp Line.h
 	Matrix.cpp Matrix.h
+	Message.cpp Message.h
 	Path.cpp Path.h
 	Paths.cpp Paths.h
 	Rectangle.cpp Rectangle.h

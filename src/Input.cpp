@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "InputKeys.h"
 #include "Game.h"
+#include "Message.h"
 
 #include <SDL.h>
 
@@ -49,6 +50,12 @@ void CInput::HandleEvents(SDL_Event* e)
   }
 
   while(SDL_PollEvent(e)) {
+    if(inp_pGame->gam_bCatchMessages) {
+      if(!inp_pGame->MessageLoop(CMessage(e))) {
+        continue;
+      }
+    }
+
     switch(e->type) {
     case SDL_QUIT:
       if(inp_pGame->OnClose()) {

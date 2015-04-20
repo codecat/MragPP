@@ -26,6 +26,7 @@ CGame::CGame()
   gam_ulWindowFlags = 0;
   gam_bRunning = true;
   gam_strSystemFont = "System.ttf";
+  gam_bCatchMessages = false;
   Input.Initialize(this);
   Content.Initialize(this);
 }
@@ -101,6 +102,11 @@ void CGame::Render()
     Renderer.PopFont();
   }
 #endif
+}
+
+bool CGame::MessageLoop(const CMessage &m)
+{
+  return true;
 }
 
 MRAGPP_NAMESPACE_END;
