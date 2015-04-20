@@ -195,10 +195,7 @@ Vector2i CAnimation::Render(const Vector2f &vPos, const Vector2f &vSize, CAnimat
   if(fOverX > 0) { rectDest.w = fOverX; }
   if(fOverY > 0) { rectDest.h = fOverY; }
 
-  if(pAnim->ani_pSheet->ans_bCenter) {
-    rectDest.x -= rectDest.w / 2.0f;
-    rectDest.y -= rectDest.h / 2.0f;
-  }
+  rectDest.anchorInCenter = pAnim->ani_pSheet->ans_bCenter;
   rend.PutTexture(tex, rectDest, rectSrc, ani_bFlipH, ani_bFlipV);
 
   if(!frame.anf_bPause) {
