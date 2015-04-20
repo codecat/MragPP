@@ -6,6 +6,11 @@
 
 union SDL_Event;
 
+#define MRAG_MSGTYPE_KEYDOWN (0x300)
+#define MRAG_MSGTYPE_KEYUP (0x301)
+#define MRAG_MSGTYPE_TEXTEDITING (0x302)
+#define MRAG_MSGTYPE_TEXTINPUT (0x303)
+
 MRAGPP_NAMESPACE_BEGIN;
 
 class MRAGPP_EXPORT CMessage
@@ -16,6 +21,12 @@ public:
 	MragppKeys msg_eKeyScan;
 	MragppKeys msg_eKeyCode;
 	unsigned short msg_iKeyMod;
+
+	Scratch::CString msg_strTextInput;
+
+	Scratch::CString msg_strComposition;
+	int msg_iEditCursor;
+	int msg_iEditSelection;
 
 public:
 	CMessage(SDL_Event* e);

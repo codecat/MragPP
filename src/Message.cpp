@@ -12,6 +12,12 @@ CMessage::CMessage(SDL_Event* e)
 	msg_eKeyScan = (MragppKeys)e->key.keysym.scancode;
 	msg_eKeyCode = (MragppKeys)e->key.keysym.sym;
 	msg_iKeyMod = e->key.keysym.mod;
+
+	msg_strTextInput = e->text.text;
+
+	msg_strComposition = e->edit.text;
+	msg_iEditCursor = e->edit.start;
+	msg_iEditSelection = e->edit.length;
 }
 
 CMessage::~CMessage()
