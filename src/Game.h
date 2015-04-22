@@ -32,6 +32,8 @@ public:
 
   bool gam_bCatchMessages;
 
+  unsigned long long gam_iGameUpdate;
+
 public:
   CGame();
   virtual ~CGame();

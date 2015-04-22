@@ -27,6 +27,7 @@ CGame::CGame()
   gam_bRunning = true;
   gam_strSystemFont = "System.ttf";
   gam_bCatchMessages = false;
+  gam_iGameUpdate = 0;
   Input.Initialize(this);
   Content.Initialize(this);
 }
@@ -79,6 +80,8 @@ bool CGame::OnClose()
 void CGame::Update()
 {
   Paths.Update();
+
+  gam_iGameUpdate++;
 }
 
 void CGame::Render()
