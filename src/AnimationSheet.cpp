@@ -61,6 +61,7 @@ CAnimation::CAnimation()
   ani_bFlipV = false;
 
   ani_iAlphaMultiplier = 255;
+  ani_ebmBlendMode = BM_NONE;
   ani_colMultiplier = COL_WHITE;
 }
 
