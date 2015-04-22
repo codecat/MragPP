@@ -20,7 +20,7 @@ public:
 
 	MragppKeys msg_eKeyScan;
 	MragppKeys msg_eKeyCode;
-	unsigned short msg_iKeyMod;
+	MragppKeymods msg_eKeyMod;
 
 	Scratch::CString msg_strTextInput;
 

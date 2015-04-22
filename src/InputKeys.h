@@ -359,6 +359,31 @@ typedef enum
                                  for array bounds */
 } MragppKeys;
 
+/**
+ * \brief Enumeration of valid key mods (possibly OR'd together).
+ */
+typedef enum
+{
+    MKEYMOD_NONE = 0x0000,
+    MKEYMOD_LSHIFT = 0x0001,
+    MKEYMOD_RSHIFT = 0x0002,
+    MKEYMOD_LCTRL = 0x0040,
+    MKEYMOD_RCTRL = 0x0080,
+    MKEYMOD_LALT = 0x0100,
+    MKEYMOD_RALT = 0x0200,
+    MKEYMOD_LGUI = 0x0400,
+    MKEYMOD_RGUI = 0x0800,
+    MKEYMOD_NUM = 0x1000,
+    MKEYMOD_CAPS = 0x2000,
+    MKEYMOD_MODE = 0x4000,
+    MKEYMOD_RESERVED = 0x8000
+} MragppKeymods;
+
+#define MKEYMOD_CTRL   (MKEYMOD_LCTRL|MKEYMOD_RCTRL)
+#define MKEYMOD_SHIFT  (MKEYMOD_LSHIFT|MKEYMOD_RSHIFT)
+#define MKEYMOD_ALT    (MKEYMOD_LALT|MKEYMOD_RALT)
+#define MKEYMOD_GUI    (MKEYMOD_LGUI|MKEYMOD_RGUI)
+
 #define MBUTTON_LEFT   0
 #define MBUTTON_MIDDLE 1
 #define MBUTTON_RIGHT  2
