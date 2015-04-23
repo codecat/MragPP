@@ -308,7 +308,15 @@ void CRenderer::PutTexture(CTexture &texture, float x, float y, float width, flo
 
 void CRenderer::PutTexture(CTexture &texture, const CRectangle &rectDest)
 {
-  PutTexture(texture, rectDest.x, rectDest.y, rectDest.w, rectDest.h, rectDest.rotation);
+  float x = rectDest.x;
+  float y = rectDest.y;
+
+  if(rectDest.anchorInCenter) {
+    x -= rectDest.w / 2;
+    y -= rectDest.h / 2;
+  }
+
+  PutTexture(texture, x, y, rectDest.w, rectDest.h, rectDest.rotation);
 }
 
 void CRenderer::PutTexture(CTexture &texture, const CRectangle &rectDest, const CRectangle &rectSrc, bool bFlipHor, bool bFlipVer)
