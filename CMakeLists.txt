@@ -10,7 +10,7 @@ if(CMAKE_BUILD_TYPE)
 	else()
 		message("Mrag++ release build")
 	endif()
-else
+else()
 	message("Mrag++ release build")
 endif()
 
