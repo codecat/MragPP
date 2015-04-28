@@ -8,7 +8,7 @@
 #include <Psapi.h>
 #endif
 
-#if _DEBUG && WINDOWS
+#if DEBUG && WINDOWS
 #pragma comment(lib, "psapi.lib")
 #endif
 
@@ -88,7 +88,7 @@ void CGame::Render()
 {
   Paths.Render();
 
-#if _DEBUG && WINDOWS
+#if DEBUG && WINDOWS
   if(Input.IsKeyDown(MKEY_F1)) {
     PROCESS_MEMORY_COUNTERS counters;
     GetProcessMemoryInfo(GetCurrentProcess(), &counters, sizeof(counters));
