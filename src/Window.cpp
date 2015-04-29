@@ -2,6 +2,7 @@
 #include "Window.h"
 
 #include <SDL.h>
+#include <GL/gl.h>
 
 MRAGPP_NAMESPACE_BEGIN;
 
@@ -34,6 +35,10 @@ void CWindow::Create(Scratch::CString strTitle, int width, int height, ULONG ulF
 #endif
 
   win_pWindow = SDL_CreateWindow(strTitle, iX, iY, width, height, SDL_WINDOW_SHOWN | ulFlags);
+
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+  glEnable(GL_MULTISAMPLE);
 
   if(win_pWindow == 0) {
     printf("SDL window creation error: '%s'\n", SDL_GetError());
