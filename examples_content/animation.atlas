@@ -1,0 +1,216 @@
+
+animation.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skeleton-body-Idle_0
+  rotate: false
+  xy: 0, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_1
+  rotate: false
+  xy: 423, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_2
+  rotate: false
+  xy: 846, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_3
+  rotate: false
+  xy: 1269, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_4
+  rotate: false
+  xy: 1692, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_5
+  rotate: false
+  xy: 2115, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_6
+  rotate: false
+  xy: 2538, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_7
+  rotate: false
+  xy: 2961, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_8
+  rotate: false
+  xy: 3384, 0
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_9
+  rotate: false
+  xy: 0, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_10
+  rotate: false
+  xy: 423, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_11
+  rotate: false
+  xy: 846, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_12
+  rotate: false
+  xy: 1269, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_13
+  rotate: false
+  xy: 1692, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_14
+  rotate: false
+  xy: 2115, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_15
+  rotate: false
+  xy: 2538, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_16
+  rotate: false
+  xy: 2961, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_17
+  rotate: false
+  xy: 3384, 466
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_18
+  rotate: false
+  xy: 0, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_19
+  rotate: false
+  xy: 423, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_20
+  rotate: false
+  xy: 846, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_21
+  rotate: false
+  xy: 1269, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_22
+  rotate: false
+  xy: 1692, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_23
+  rotate: false
+  xy: 2115, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_24
+  rotate: false
+  xy: 2538, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_25
+  rotate: false
+  xy: 2961, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_26
+  rotate: false
+  xy: 3384, 932
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_27
+  rotate: false
+  xy: 0, 1398
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_28
+  rotate: false
+  xy: 423, 1398
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1
+skeleton-body-Idle_29
+  rotate: false
+  xy: 846, 1398
+  size: 423, 466
+  orig: 423, 466
+  offset: 0, 0
+  index: -1

@@ -39,10 +39,10 @@ public:
 
 public:
   CAnimationFrame();
-  ~CAnimationFrame();
+  virtual ~CAnimationFrame();
 
 private:
-  void Load(XmlTag &tagFrame);
+  virtual void Load(XmlTag &tagFrame);
 };
 
 class MRAGPP_EXPORT CAnimation

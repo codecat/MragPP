@@ -10,6 +10,7 @@ add_library(Mragpp
 	Function.h
 	SpecialMath.h
 	AnimationSheet.cpp AnimationSheet.h
+	AnimationAtlas.cpp AnimationAtlas.h
 	Colors.cpp Colors.h
 	ContentRegister.cpp ContentRegister.h
 	Easing.cpp Easing.h
