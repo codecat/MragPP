@@ -1,0 +1,185 @@
+{
+"skeleton": { "hash": "b5tz8pbQCTUkJ03lj2HEseCqXlY", "spine": "2.1.27", "width": 400.3, "height": 400.3, "images": "" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "Body", "parent": "root", "length": 73.05, "x": 4.65, "y": -45.73, "rotation": -89.09 },
+	{ "name": "ArmL", "parent": "Body", "length": 58.31, "x": -16.48, "y": -34.27, "rotation": -30.79 },
+	{ "name": "ArmR", "parent": "Body", "length": 53.53, "x": -19.24, "y": 42.8, "rotation": 22.29 },
+	{ "name": "Head", "parent": "Body", "length": 29.24, "x": -19.89, "y": 1.64, "rotation": -178.64 },
+	{ "name": "Eyes", "parent": "Head", "length": 27.88, "x": 62.89, "y": -1.14, "rotation": -1.8 },
+	{ "name": "HandL", "parent": "ArmL", "length": 35.63, "x": 56.49, "y": 0.28, "rotation": 3.15 },
+	{ "name": "HandR", "parent": "ArmR", "length": 42.18, "x": 52.31, "y": 0.7, "rotation": 4.95 }
+],
+"slots": [
+	{ "name": "Leg_L", "bone": "root", "attachment": "Leg_L" },
+	{ "name": "Leg_R", "bone": "root", "attachment": "Leg_R" },
+	{ "name": "Arm_L", "bone": "ArmL", "attachment": "Arm_L" },
+	{ "name": "Arm_R", "bone": "ArmR", "attachment": "Arm_R" },
+	{ "name": "Hand_L", "bone": "HandL", "attachment": "Hand_L" },
+	{ "name": "Hand_R", "bone": "HandR", "attachment": "Hand_R" },
+	{ "name": "Body", "bone": "Body", "attachment": "Body" },
+	{ "name": "Helmet", "bone": "Head", "attachment": "Helmet" },
+	{ "name": "Eyes", "bone": "Eyes", "attachment": "Eyes" },
+	{ "name": "Mustache", "bone": "Head", "attachment": "Mustache" },
+	{ "name": "Nose", "bone": "Head", "attachment": "Nose" }
+],
+"skins": {
+	"default": {
+		"Arm_L": {
+			"Arm_L": { "x": -40.72, "y": 11.05, "rotation": 119.89, "width": 400, "height": 400 }
+		},
+		"Arm_R": {
+			"Arm_R": { "x": -42.31, "y": -33.17, "rotation": 66.8, "width": 400, "height": 400 }
+		},
+		"Body": {
+			"Body": { "x": -45.8, "y": -3.92, "rotation": 89.09, "width": 400, "height": 400 }
+		},
+		"Eyes": {
+			"Eyes": { "x": -37.03, "y": 4.93, "rotation": -90.45, "width": 400, "height": 400 }
+		},
+		"Hand_L": {
+			"Hand_L": { "x": -96.47, "y": 16.11, "rotation": 116.73, "width": 400, "height": 400 }
+		},
+		"Hand_R": {
+			"Hand_R": { "x": -97.21, "y": -25.55, "rotation": 61.85, "width": 400, "height": 400 }
+		},
+		"Helmet": {
+			"Helmet": { "x": 26.03, "y": 4.95, "rotation": -92.25, "width": 400, "height": 400 }
+		},
+		"Leg_L": {
+			"Leg_L": { "width": 400, "height": 400 }
+		},
+		"Leg_R": {
+			"Leg_R": { "width": 400, "height": 400 }
+		},
+		"Mustache": {
+			"Mustache": {
+				"type": "mesh",
+				"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0, 0.50043, 0.52766, 0.57505, 0.57788, 0.42724, 0.57788, 0.49899, 0.55779, 0.4257, 0.55001, 0.45462, 0.58254, 0.5462, 0.58133, 0.57512, 0.54398 ],
+				"triangles": [ 4, 2, 3, 11, 4, 3, 8, 2, 4, 7, 8, 4, 10, 7, 4, 4, 11, 10, 9, 6, 8, 5, 10, 11, 7, 9, 8, 1, 2, 8, 1, 8, 6, 11, 3, 0, 5, 11, 0, 10, 5, 0, 9, 7, 10, 0, 9, 10, 1, 6, 9, 0, 1, 9 ],
+				"vertices": [ -181.74, -186.95, -165.86, 212.73, 233.81, 196.86, 217.94, -202.82, 14.97, 5.21999, -6.28, -23.8, -3.93, 35.25999, 2.95, 6.27, 7.22, 35.43999, -6.23, 24.4, -7.2, -12.22, 7.26, -24.37 ],
+				"hull": 4,
+				"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+				"width": 400,
+				"height": 400
+			}
+		},
+		"Nose": {
+			"Nose": { "x": 26.03, "y": 4.95, "rotation": -92.25, "width": 400, "height": 400 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"Body": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.5, "x": 0, "y": -2.31 },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.5, "x": 0.961, "y": 1 },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			},
+			"Eyes": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.5, "x": 0.902, "y": 1 },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			},
+			"HandR": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.5, "angle": -16.91 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"HandL": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.5, "angle": 14.65 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"Head": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.5666, "x": 2.62, "y": -0.03 },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.5666, "x": 1.014, "y": 1.014 },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			},
+			"ArmR": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.5, "angle": 7.33 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"ArmL": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.5, "angle": -5.66 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			}
+		},
+		"ffd": {
+			"default": {
+				"Mustache": {
+					"Mustache": [
+						{
+							"time": 0,
+							"offset": 10,
+							"vertices": [ -1.97888, 2.15765, -3.04677, -3.82572, 0, 0, -2.77814, -0.6878, 0.40886, -4.86674, 0.46379, 2.82843, -1.50851, -1.7295 ]
+						},
+						{
+							"time": 0.1,
+							"offset": 10,
+							"vertices": [ -0.83175, 2.75218, -2.00656, -4.86126, 0, 0, -2.09822, -0.57367, 0.52637, -4.01515, 0.57161, 2.32204, -1.05264, -1.43154 ]
+						},
+						{
+							"time": 0.5666,
+							"offset": 10,
+							"vertices": [ 4.12826, -4.30057, 3.43759, 5.0471, 0, 0, 1.07472, -0.04106, 1.07472, -0.04106, 1.07475, -0.04106, 1.07475, -0.04106 ]
+						},
+						{
+							"time": 1,
+							"offset": 10,
+							"vertices": [ -1.97888, 2.15765, -3.04677, -3.82572, 0, 0, -2.77814, -0.6878, 0.40886, -4.86674, 0.46379, 2.82843, -1.50851, -1.7295 ]
+						}
+					]
+				}
+			}
+		}
+	}
+}
+}
