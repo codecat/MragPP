@@ -2,6 +2,13 @@
 
 Mrag++ is a C++ library for game development in SDL2. Its structure is loosely based on the concept of XNA (or Monogame).
 
+It also supports Spine's Json format for animations.
+
+Examples
+========
+
+You can find example projects in the `examples` folder.
+
 Dependencies
 ============
 
@@ -9,6 +16,7 @@ The following dependencies are required for Mrag++ to build:
 
 * [Cmake](http://www.cmake.org/)
 * [SDL2.0](http://libsdl.org/download-2.0.php)
+* [GLEW](http://glew.sourceforge.net/)
 * libScratch (comes shipped)
 
 Building
