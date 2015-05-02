@@ -83,6 +83,16 @@ void CAnimationJson::DumpInfo()
 	}
 }
 
+int CAnimationJson::GetAnimationCount()
+{
+	return ani_pSkeletonData->animationsCount;
+}
+
+const char* const CAnimationJson::GetAnimationName(int iIndex)
+{
+	return ani_pSkeletonData->animations[iIndex]->name;
+}
+
 void CAnimationJson::SetAnimation(const char* szName, bool bLooping)
 {
 	spAnimationState_setAnimationByName(ani_pState, 0, szName, bLooping ? 1 : 0);

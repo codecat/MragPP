@@ -35,6 +35,9 @@ public:
 	 */
 	void DumpInfo();
 
+	int GetAnimationCount();
+	const char* const GetAnimationName(int iIndex);
+
 	void SetAnimation(const char* szName, bool bLooping);
 
 	void Update(float fDeltatime);
