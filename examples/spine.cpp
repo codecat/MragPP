@@ -144,7 +144,7 @@ void CBasic::Render()
 	CTexture* pTexture = NULL;
 
 	Renderer.SetColor(COL_RED | MRAG_ALPHA_OPAQUE);
-  for(int i=0; i<m_pSkeleton->slotsCount; i++) {
+	for(int i=0; i<m_pSkeleton->slotsCount; i++) {
 		spSlot* pSlot = m_pSkeleton->slots[i];
 		spAttachment* pAttachment = pSlot->attachment;
 		if(!pAttachment) {
@@ -230,9 +230,9 @@ void CBasic::Render()
 				saVertices.Push() = v;
 			}
 		}
-  }
+	}
 
-  if(pTexture != NULL) {
+	if(pTexture != NULL) {
 		glUseProgramObjectARB(0);
 		glPushMatrix();
 		glTranslatef(300, 300, 0);
@@ -279,9 +279,9 @@ void CBasic::Render()
 		delete[] aPositions;
 		delete[] aTexCoords;
 		delete[] aColors;
-  }
+	}
 
-  //Renderer.PutTexture(*pTexture, 0, 0);
+	//Renderer.PutTexture(*pTexture, 0, 0);
 	/*for(int i=0; i<m_pSkeleton->bonesCount; i++) {
 		spBone* pBone = m_pSkeleton->bones[i];
 
