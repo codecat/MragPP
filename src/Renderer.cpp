@@ -6,6 +6,7 @@
 
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <GL/glew.h>
 
 MRAGPP_NAMESPACE_BEGIN;
 
@@ -31,6 +32,15 @@ CRenderer::~CRenderer()
 void CRenderer::Create(CWindow &window)
 {
   ren_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+  static bool _bInitializedGlew = false;
+  if(!_bInitializedGlew) {
+    GLenum err = glewInit();
+    if(err != GLEW_OK) {
+      printf("Glew initialization error: %d\n", err);
+    }
+    _bInitializedGlew = true;
+  }
 
   if(ren_pRenderer == 0) {
     printf("SDL renderer creation error: '%s'\n", SDL_GetError());

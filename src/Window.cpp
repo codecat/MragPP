@@ -2,7 +2,7 @@
 #include "Window.h"
 
 #include <SDL.h>
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 MRAGPP_NAMESPACE_BEGIN;
 
