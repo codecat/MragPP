@@ -8,3 +8,4 @@ endfunction()
 
 example(basic)
 example(atlas)
+example(spine)

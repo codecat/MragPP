@@ -5,6 +5,7 @@ endif()
 add_subdirectory(Scratch)
 
 file(GLOB_RECURSE box2d_sources "Box2D/*.cpp" "Box2D/*.c" "Box2D/*.h")
+file(GLOB_RECURSE spine_sources "spine/*.c" "spine/*.h")
 
 add_library(Mragpp
 	Function.h
@@ -35,12 +36,14 @@ add_library(Mragpp
 	Xml/XmlFile.cpp Xml/XmlFile.h
 	Xml/XmlHelpers.cpp Xml/XmlHelpers.h
 	Xml/XmlTag.cpp Xml/XmlTag.h
-	${box2d_sources})
+	${box2d_sources}
+	${spine_sources})
 
 source_group(Sources REGULAR_EXPRESSION ".*")
 source_group(Pathfinding REGULAR_EXPRESSION "Pathfinding/.*")
 source_group(Xml REGULAR_EXPRESSION "Xml/.*")
 source_group(Box2D REGULAR_EXPRESSION "Box2D/.*")
+source_group(Spine REGULAR_EXPRESSION "spine/.*")
 
 if(UNIX AND NOT APPLE)
 	find_library(M_LIB m)
@@ -48,6 +51,7 @@ if(UNIX AND NOT APPLE)
 endif()
 
 find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
@@ -58,13 +62,15 @@ include_directories(.
 	${SDL2_INCLUDE_DIR}
 	${SDL2_IMAGE_INCLUDE_DIR}
 	${SDL2_TTF_INCLUDE_DIR}
-	${OPENGL_INCLUDE_DIR})
+	${OPENGL_INCLUDE_DIR}
+	${GLEW_INCLUDE_DIRS})
 target_link_libraries(Mragpp
 	Scratch
 	${SDL2_LIBRARY}
 	${SDL2_IMAGE_LIBRARY}
 	${SDL2_TTF_LIBRARY}
-	${OPENGL_LIBRARIES})
+	${OPENGL_LIBRARIES}
+	${GLEW_LIBRARIES})
 
 set_target_properties(Mragpp PROPERTIES MACOSX_RPATH 1)
 set_target_properties(Mragpp PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
