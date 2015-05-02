@@ -6,7 +6,7 @@ install:
   - sudo add-apt-repository ppa:zoogie/sdl2-snapshots -y
   - sudo add-apt-repository ppa:kalakris/cmake -y
   - sudo apt-get update
-  - sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev cmake
+  - sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev cmake libglew-dev
 script:
   - mkdir build
   - cd build
