@@ -34,13 +34,7 @@ void CWindow::Create(Scratch::CString strTitle, int width, int height, ULONG ulF
   int iY = 50;
 #endif
 
-  win_pWindow = SDL_CreateWindow(strTitle, iX, iY, width, height, SDL_WINDOW_SHOWN | ulFlags);
-
-  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
-  glEnable(GL_MULTISAMPLE);
-
-  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+  win_pWindow = SDL_CreateWindow(strTitle, iX, iY, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | ulFlags);
 
   if(win_pWindow == 0) {
     printf("SDL window creation error: '%s'\n", SDL_GetError());

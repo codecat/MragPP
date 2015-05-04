@@ -33,6 +33,12 @@ void CRenderer::Create(CWindow &window)
 {
   ren_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+  glEnable(GL_MULTISAMPLE);
+
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
   static bool _bInitializedGlew = false;
   if(!_bInitializedGlew) {
     GLenum err = glewInit();
