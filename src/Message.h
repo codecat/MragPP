@@ -16,21 +16,21 @@ MRAGPP_NAMESPACE_BEGIN;
 class MRAGPP_EXPORT CMessage
 {
 public:
-	ULONG msg_iType;
+  ULONG msg_iType;
 
-	MragppKeys msg_eKeyScan;
-	MragppKeys msg_eKeyCode;
-	MragppKeymods msg_eKeyMod;
+  MragppKeys msg_eKeyScan;
+  MragppKeys msg_eKeyCode;
+  MragppKeymods msg_eKeyMod;
 
-	Scratch::CString msg_strTextInput;
+  Scratch::CString msg_strTextInput;
 
-	Scratch::CString msg_strComposition;
-	int msg_iEditCursor;
-	int msg_iEditSelection;
+  Scratch::CString msg_strComposition;
+  int msg_iEditCursor;
+  int msg_iEditSelection;
 
 public:
-	CMessage(SDL_Event* e);
-	~CMessage();
+  CMessage(SDL_Event* e);
+  ~CMessage();
 };
 
 MRAGPP_NAMESPACE_END;
