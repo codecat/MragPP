@@ -154,12 +154,13 @@ void CTexture::SetColorMod(COLOR col)
 
 void CTexture::Destroy()
 {
-  if(tex_pTexture == 0) {
+  if(tex_pTexture == 0 || !tex_bLoaded) {
     return;
   }
 
   SDL_DestroyTexture(tex_pTexture);
   tex_pTexture = 0;
+  tex_bLoaded = false;
 }
 
 CTexture::operator SDL_Texture*()
