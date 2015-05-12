@@ -1,0 +1,3 @@
+[submodule "Scratch"]
+	path = Mragpp/Scratch
+	url = git@github.com:AngeloG/Scratch.git
