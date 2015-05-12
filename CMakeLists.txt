@@ -76,7 +76,7 @@ find_package(SDL2_ttf REQUIRED)
 
 include_directories(.
 	Mragpp/
-	Mragpp/Scratch/src/
+	Mragpp/Scratch/
 	${SDL2_INCLUDE_DIR}
 	${SDL2_IMAGE_INCLUDE_DIR}
 	${SDL2_TTF_INCLUDE_DIR}
