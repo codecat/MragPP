@@ -49,6 +49,7 @@ add_library(Mragpp
 	Mragpp/Window.cpp Mragpp/Window.h
 	Mragpp/Sound.cpp Mragpp/Sound.h
 	Mragpp/SoundChannel.cpp Mragpp/SoundChannel.h
+	Mragpp/Music.cpp Mragpp/Music.h
 	Mragpp/Pathfinding/Node.cpp Mragpp/Pathfinding/Node.h
 	Mragpp/Pathfinding/Pathfinding.cpp Mragpp/Pathfinding/Pathfinding.h
 	Mragpp/Pathfinding/Tile.cpp Mragpp/Pathfinding/Tile.h
@@ -56,7 +57,8 @@ add_library(Mragpp
 	Mragpp/Xml/XmlHelpers.cpp Mragpp/Xml/XmlHelpers.h
 	Mragpp/Xml/XmlTag.cpp Mragpp/Xml/XmlTag.h
 	${box2d_sources}
-	${spine_sources})
+	${spine_sources}
+)
 
 source_group(Sources REGULAR_EXPRESSION "Mragpp/.*")
 source_group(Pathfinding REGULAR_EXPRESSION "Mragpp/Pathfinding/.*")

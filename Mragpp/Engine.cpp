@@ -36,15 +36,13 @@ void InitializeEngine()
     return;
   }
 
-  int iMixerFlags = MIX_INIT_OGG;
+  int iMixerFlags = MIX_INIT_OGG | MIX_INIT_MP3;
   if(Mix_Init(iMixerFlags) != iMixerFlags) {
-    printf("Mixer initialization error: '%s'\n", Mix_GetError());
-    return;
+    printf("Warning: Mixer failed initializing: '%s'\n", Mix_GetError());
   }
 
   if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
-    printf("Mixer failed to open audio channels: '%s'\n", Mix_GetError());
-    return;
+    printf("Warning: Mixer failed to open audio channels: '%s'\n", Mix_GetError());
   }
 
   int ctAllocate = 32;
