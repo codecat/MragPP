@@ -47,6 +47,8 @@ add_library(Mragpp
 	Mragpp/Texture.cpp Mragpp/Texture.h
 	Mragpp/Vector.cpp Mragpp/Vector.h
 	Mragpp/Window.cpp Mragpp/Window.h
+	Mragpp/Sound.cpp Mragpp/Sound.h
+	Mragpp/SoundChannel.cpp Mragpp/SoundChannel.h
 	Mragpp/Pathfinding/Node.cpp Mragpp/Pathfinding/Node.h
 	Mragpp/Pathfinding/Pathfinding.cpp Mragpp/Pathfinding/Pathfinding.h
 	Mragpp/Pathfinding/Tile.cpp Mragpp/Pathfinding/Tile.h
@@ -73,6 +75,7 @@ find_package(GLEW REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
+find_package(SDL2_mixer REQUIRED)
 
 include_directories(.
 	Mragpp/
@@ -80,16 +83,20 @@ include_directories(.
 	${SDL2_INCLUDE_DIR}
 	${SDL2_IMAGE_INCLUDE_DIR}
 	${SDL2_TTF_INCLUDE_DIR}
+	${SDLMIXER_INCLUDE_DIR}
 	${OPENGL_INCLUDE_DIR}
-	${GLEW_INCLUDE_DIRS})
+	${GLEW_INCLUDE_DIRS}
+)
 target_link_libraries(Mragpp
 	Scratch
 	${SDL2_LIBRARY}
 	${SDL2_IMAGE_LIBRARY}
 	${SDL2_TTF_LIBRARY}
+	${SDLMIXER_LIBRARY}
 	${OPENGL_LIBRARIES}
 	${GLEW_LIBRARIES}
-	stdc++)
+	stdc++
+)
 
 set_target_properties(Mragpp PROPERTIES MACOSX_RPATH 1)
 set_target_properties(Mragpp PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")

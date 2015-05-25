@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 MRAGPP_NAMESPACE_BEGIN;
 
@@ -15,6 +16,7 @@ int g_iGamesRunning = 0;
 void InitializeEngine()
 {
   if(g_iGamesRunning > 0) {
+    g_iGamesRunning++;
     return;
   }
 
@@ -34,6 +36,23 @@ void InitializeEngine()
     return;
   }
 
+  int iMixerFlags = MIX_INIT_OGG;
+  if(Mix_Init(iMixerFlags) != iMixerFlags) {
+    printf("Mixer initialization error: '%s'\n", Mix_GetError());
+    return;
+  }
+
+  if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
+    printf("Mixer failed to open audio channels: '%s'\n", Mix_GetError());
+    return;
+  }
+
+  int ctAllocate = 32;
+  int ctAllocated = Mix_AllocateChannels(ctAllocate);
+  if(ctAllocated != ctAllocate) {
+    printf("Warning: Mixer allocated %d channels instead of %d\n", ctAllocated, ctAllocate);
+  }
+
   g_iGamesRunning++;
 }
 
@@ -46,6 +65,8 @@ void EndEngine()
   }
 
   if(g_iGamesRunning == 0) {
+    Mix_CloseAudio();
+    Mix_Quit();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
