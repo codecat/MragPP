@@ -88,7 +88,8 @@ target_link_libraries(Mragpp
 	${SDL2_IMAGE_LIBRARY}
 	${SDL2_TTF_LIBRARY}
 	${OPENGL_LIBRARIES}
-	${GLEW_LIBRARIES})
+	${GLEW_LIBRARIES}
+	stdc++)
 
 set_target_properties(Mragpp PROPERTIES MACOSX_RPATH 1)
 set_target_properties(Mragpp PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
