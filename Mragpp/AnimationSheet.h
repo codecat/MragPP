@@ -51,8 +51,8 @@ class MRAGPP_EXPORT CAnimation
 public:
   CAnimationSheet* ani_pSheet;
 
-  Scratch::CStackArray<CAnimationFrame> ani_saFrames;
-  Scratch::CString ani_strName;
+  Scratch::StackArray<CAnimationFrame> ani_saFrames;
+  Scratch::String ani_strName;
 
   Vector2f ani_vSize;
   CRectangle ani_rectOffset;
@@ -92,66 +92,66 @@ class CGame;
 class MRAGPP_EXPORT CAnimationSheet
 {
 public:
-  Scratch::CStackArray<CAnimation> ans_saAnimations;
-  Scratch::CString ans_strName;
-  Scratch::CString ans_strTextureFilename;
+  Scratch::StackArray<CAnimation> ans_saAnimations;
+  Scratch::String ans_strName;
+  Scratch::String ans_strTextureFilename;
   CTexture* ans_pTexture;
-  Scratch::CDictionary<int, CTexture> ans_saHues;
+  Scratch::Dictionary<int, CTexture> ans_saHues;
   XmlFile* ans_pXml;
   CRenderer* ans_pRenderer;
   BOOL ans_bCenter;
   BOOL ans_bLoaded;
 
-  Scratch::CString ans_strLatestAnimation;
+  Scratch::String ans_strLatestAnimation;
 
 public:
   CAnimationSheet();
-  CAnimationSheet(CGame* pGame, const Scratch::CString &strFilename);
+  CAnimationSheet(CGame* pGame, const Scratch::String &strFilename);
   ~CAnimationSheet();
 
-  CAnimation* GetAnimation(const Scratch::CString &strName);
+  CAnimation* GetAnimation(const Scratch::String &strName);
 
-  void Load(CGame* pGame, const Scratch::CString &strFilename);
+  void Load(CGame* pGame, const Scratch::String &strFilename);
   void Unload();
 
-  void SetAlphaMult(const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha);
-  void SetBlendingMode(const Scratch::CString &strAnimationName, ETextureBlendMode ebm);
-  void SetColorMult(const Scratch::CString &strAnimationName, COLOR colMult);
+  void SetAlphaMult(const Scratch::String &strAnimationName, COLOR_VALUE iAlpha);
+  void SetBlendingMode(const Scratch::String &strAnimationName, ETextureBlendMode ebm);
+  void SetColorMult(const Scratch::String &strAnimationName, COLOR colMult);
 
-  Vector2i Render(const Scratch::CString &strName, const Vector2f &vPos, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
-  Vector2i Render(const Scratch::CString &strName, const Vector2f &vPos, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
-  Vector2i Render(const Scratch::CString &strName, const Vector2f &vPos, const Vector2f &vSize, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
-  Vector2i Render(const Scratch::CString &strName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strName, const Vector2f &vPos, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strName, const Vector2f &vPos, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strName, const Vector2f &vPos, const Vector2f &vSize, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
 };
 
 class MRAGPP_EXPORT CAnimationSheetCollection
 {
 public:
-  Scratch::CStackArray<CAnimationSheet> asc_saSheets;
+  Scratch::StackArray<CAnimationSheet> asc_saSheets;
   XmlFile* asc_pXml;
 
 public:
   CAnimationSheetCollection();
   ~CAnimationSheetCollection();
 
-  void Load(CGame* pGame, const Scratch::CString &strFilename);
+  void Load(CGame* pGame, const Scratch::String &strFilename);
   void Unload();
 
-  void Add(CGame* pGame, const Scratch::CString &strFilename);
-  CAnimationSheet* GetSheet(const Scratch::CString &strName);
+  void Add(CGame* pGame, const Scratch::String &strFilename);
+  CAnimationSheet* GetSheet(const Scratch::String &strName);
 
-  void SetAlphaMult(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha);
-  void SetBlendingMode(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, ETextureBlendMode ebm);
-  void SetColorMult(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, COLOR colMult);
+  void SetAlphaMult(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, COLOR_VALUE iAlpha);
+  void SetBlendingMode(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, ETextureBlendMode ebm);
+  void SetColorMult(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, COLOR colMult);
 
-  Vector2i Render(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, const Vector2f &vPos, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
-  Vector2i Render(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, const Vector2f &vPos, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
-  Vector2i Render(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
-  Vector2i Render(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, const Vector2f &vPos, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, const Vector2f &vPos, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
+  Vector2i Render(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation = 0.0f, float fOverX = 0.0f, float fOverY = 0.0f);
 
-  Vector2i GetSize(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName);
+  Vector2i GetSize(const Scratch::String &strSheetName, const Scratch::String &strAnimationName);
 
-  CAnimationSheet &operator[](const Scratch::CString &strName);
+  CAnimationSheet &operator[](const Scratch::String &strName);
 };
 
 MRAGPP_NAMESPACE_END;

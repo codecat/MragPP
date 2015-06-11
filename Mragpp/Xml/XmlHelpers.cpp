@@ -5,10 +5,10 @@ using namespace Scratch;
 
 MRAGPP_NAMESPACE_BEGIN;
 
-void ParseAttributes(CStream &fs, CDictionary<CString, CString> &out_attrs, bool &out_bOpenTag)
+void ParseAttributes(Stream &fs, Dictionary<String, String> &out_attrs, bool &out_bOpenTag)
 {
-  CString strKey;
-  CString strValue;
+  String strKey;
+  String strValue;
   bool bReadingKey = true;
   bool bReadingString = false;
 

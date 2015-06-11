@@ -12,7 +12,7 @@ class MRAGPP_EXPORT CPaths
 
 private:
   int ps_iIterator;
-  Scratch::CStackArray<CPath> ps_aPaths;
+  Scratch::StackArray<CPath> ps_aPaths;
 
 public:
   CPaths();

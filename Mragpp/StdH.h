@@ -31,7 +31,7 @@
 MRAGPP_NAMESPACE_BEGIN;
 class CPath;
 
-inline bool ParseBool(const Scratch::CString &str)
+inline bool ParseBool(const Scratch::String &str)
 {
   return str.ToLower() == "true";
 }

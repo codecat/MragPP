@@ -23,14 +23,14 @@ CAnimationAtlas::~CAnimationAtlas()
 {
 }
 
-void CAnimationAtlas::Load(CGame* pGame, const CFilename &fnm)
+void CAnimationAtlas::Load(CGame* pGame, const Filename &fnm)
 {
   CAnimationAtlasFrame* pFrame = NULL;
 
-	CFileStream fs;
+	FileStream fs;
 	fs.Open(fnm, "r");
 	while(!fs.AtEOF()) {
-		CString strLine = fs.ReadLine();
+		String strLine = fs.ReadLine();
 
 		if(strLine == "") {
 			continue;
@@ -50,11 +50,11 @@ void CAnimationAtlas::Load(CGame* pGame, const CFilename &fnm)
     }
 
 		if(pFrame != NULL) {
-			CStackArray<CString> aParse;
+			StackArray<String> aParse;
 			strLine.Split(":", aParse);
 
-			CString strKey = aParse[0].Trim();
-			CString strValue = aParse[1].Trim();
+			String strKey = aParse[0].Trim();
+			String strValue = aParse[1].Trim();
 
 			if(strKey == "rotate") {
 				//TODO ?? usually is "false"?

@@ -529,7 +529,7 @@ void CRenderer::PutTextureRight(CTexture &texture, float x, float y, float width
   SDL_RenderCopyEx(ren_pRenderer, texture, 0, &r, (double)rot, (SDL_Point*)&vec, (SDL_RendererFlip)flip);
 }
 
-void CRenderer::MakeTextTexture(CTexture &texture, const Scratch::CString &strText, COLOR col)
+void CRenderer::MakeTextTexture(CTexture &texture, const Scratch::String &strText, COLOR col)
 {
   SDL_Color colSet;
   MRAG_COLOR_EXPLODE_RGBA(col, colSet.r, colSet.g, colSet.b, colSet.a);
@@ -548,7 +548,7 @@ void CRenderer::MakeTextTexture(CTexture &texture, const Scratch::CString &strTe
   texture.QueryTextureInfo();
 }
 
-void CRenderer::PutText(const Scratch::CString &strText, float x, float y)
+void CRenderer::PutText(const Scratch::String &strText, float x, float y)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -564,7 +564,7 @@ void CRenderer::PutText(const Scratch::CString &strText, float x, float y)
   PutTexture(tex, x, y);
 }
 
-void CRenderer::PutText(const Scratch::CString &strText, float x, float y, float rot)
+void CRenderer::PutText(const Scratch::String &strText, float x, float y, float rot)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -580,7 +580,7 @@ void CRenderer::PutText(const Scratch::CString &strText, float x, float y, float
   PutTexture(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot);
 }
 
-void CRenderer::PutText(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter)
+void CRenderer::PutText(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -596,7 +596,7 @@ void CRenderer::PutText(const Scratch::CString &strText, float x, float y, float
   PutTexture(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot, vCenter, true);
 }
 
-void CRenderer::PutTextColored(const Scratch::CString &strText, float x, float y, COLOR col)
+void CRenderer::PutTextColored(const Scratch::String &strText, float x, float y, COLOR col)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -612,7 +612,7 @@ void CRenderer::PutTextColored(const Scratch::CString &strText, float x, float y
   PutTexture(tex, x, y);
 }
 
-void CRenderer::PutTextColored(const Scratch::CString &strText, float x, float y, float rot, COLOR col)
+void CRenderer::PutTextColored(const Scratch::String &strText, float x, float y, float rot, COLOR col)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -628,7 +628,7 @@ void CRenderer::PutTextColored(const Scratch::CString &strText, float x, float y
   PutTexture(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot);
 }
 
-void CRenderer::PutTextColored(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter, COLOR col)
+void CRenderer::PutTextColored(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter, COLOR col)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -644,7 +644,7 @@ void CRenderer::PutTextColored(const Scratch::CString &strText, float x, float y
   PutTexture(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot, vCenter, true);
 }
 
-void CRenderer::PutTextCenter(const Scratch::CString &strText, float x, float y)
+void CRenderer::PutTextCenter(const Scratch::String &strText, float x, float y)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -660,7 +660,7 @@ void CRenderer::PutTextCenter(const Scratch::CString &strText, float x, float y)
   PutTextureCenter(tex, x, y);
 }
 
-void CRenderer::PutTextCenter(const Scratch::CString &strText, float x, float y, float rot)
+void CRenderer::PutTextCenter(const Scratch::String &strText, float x, float y, float rot)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -676,7 +676,7 @@ void CRenderer::PutTextCenter(const Scratch::CString &strText, float x, float y,
   PutTextureCenter(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot);
 }
 
-void CRenderer::PutTextCenter(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter)
+void CRenderer::PutTextCenter(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -692,7 +692,7 @@ void CRenderer::PutTextCenter(const Scratch::CString &strText, float x, float y,
   PutTextureCenter(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot, vCenter, true);
 }
 
-void CRenderer::PutTextRight(const Scratch::CString &strText, float x, float y)
+void CRenderer::PutTextRight(const Scratch::String &strText, float x, float y)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -708,7 +708,7 @@ void CRenderer::PutTextRight(const Scratch::CString &strText, float x, float y)
   PutTextureRight(tex, x, y);
 }
 
-void CRenderer::PutTextRight(const Scratch::CString &strText, float x, float y, float rot)
+void CRenderer::PutTextRight(const Scratch::String &strText, float x, float y, float rot)
 {
   if(ren_pfntCurrentFont == 0) {
     return;
@@ -724,7 +724,7 @@ void CRenderer::PutTextRight(const Scratch::CString &strText, float x, float y, 
   PutTextureRight(tex, x, y, (float)tex.tex_iWidth, (float)tex.tex_iHeight, rot);
 }
 
-void CRenderer::PutTextRight(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter)
+void CRenderer::PutTextRight(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter)
 {
   if(ren_pfntCurrentFont == 0) {
     return;

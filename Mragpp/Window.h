@@ -17,10 +17,10 @@ public:
   CWindow(SDL_Window* pWindow);
   ~CWindow();
 
-  void Create(Scratch::CString strTitle, int width, int height, ULONG ulFlags);
+  void Create(Scratch::String strTitle, int width, int height, ULONG ulFlags);
   void Destroy();
 
-  void SetTitle(const Scratch::CString &strTitle);
+  void SetTitle(const Scratch::String &strTitle);
 
   operator SDL_Window*();
 };

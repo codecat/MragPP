@@ -95,7 +95,7 @@ inline COLOR MRAGPP_EXPORT RainbowDash()
   return LerpColor(a, b, Easing::InOutQuad(fLerp));
 }
 
-inline COLOR MRAGPP_EXPORT HexToColor(const Scratch::CString &str)
+inline COLOR MRAGPP_EXPORT HexToColor(const Scratch::String &str)
 {
   unsigned char R, G, B, A = 0xFF;
   int iLen = strlen(str);

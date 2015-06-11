@@ -30,7 +30,7 @@ void XmlTag::SetParent(XmlTag* parent)
   Parent = parent;
 }
 
-XmlTag* XmlTag::FindTagByName(const CString &strName)
+XmlTag* XmlTag::FindTagByName(const String &strName)
 {
   XmlTag* pChild = FindChildByName(strName);
   if(pChild != 0) {
@@ -52,9 +52,9 @@ XmlTag* XmlTag::FindTagByName(const CString &strName)
   return 0;
 }
 
-XmlTag* XmlTag::FindTagByNameAndAttribute(const CString &strName, const CString &strAttrib, const CString &strValue)
+XmlTag* XmlTag::FindTagByNameAndAttribute(const String &strName, const String &strAttrib, const String &strValue)
 {
-  CStackArray<XmlTag> tags;
+  StackArray<XmlTag> tags;
   FindTagsByName(strName, tags);
 
   for(int i=0; i<tags.Count(); i++) {
@@ -67,9 +67,9 @@ XmlTag* XmlTag::FindTagByNameAndAttribute(const CString &strName, const CString 
   return 0;
 }
 
-XmlTag* XmlTag::FindTagByNameAndExistingAttribute(const Scratch::CString &strName, const Scratch::CString &strAttrib)
+XmlTag* XmlTag::FindTagByNameAndExistingAttribute(const Scratch::String &strName, const Scratch::String &strAttrib)
 {
-  CStackArray<XmlTag> tags;
+  StackArray<XmlTag> tags;
   FindTagsByName(strName, tags);
 
   for(int i=0; i<tags.Count(); i++) {
@@ -82,7 +82,7 @@ XmlTag* XmlTag::FindTagByNameAndExistingAttribute(const Scratch::CString &strNam
   return 0;
 }
 
-XmlTag* XmlTag::FindTagByAttribute(const CString &strAttrib, const CString &strValue)
+XmlTag* XmlTag::FindTagByAttribute(const String &strAttrib, const String &strValue)
 {
   for(int i=0; i<Children.Count(); i++) {
     XmlTag &tag = Children[i];
@@ -106,7 +106,7 @@ XmlTag* XmlTag::FindTagByAttribute(const CString &strAttrib, const CString &strV
   return 0;
 }
 
-XmlTag* XmlTag::FindChildByName(const Scratch::CString &strName)
+XmlTag* XmlTag::FindChildByName(const Scratch::String &strName)
 {
   for(int i=0; i<Children.Count(); i++) {
     XmlTag &tag = Children[i];
@@ -118,7 +118,7 @@ XmlTag* XmlTag::FindChildByName(const Scratch::CString &strName)
   return 0;
 }
 
-void XmlTag::FindTagsByName(const CString &strName, CStackArray<XmlTag> &result)
+void XmlTag::FindTagsByName(const String &strName, StackArray<XmlTag> &result)
 {
   FindChildrenByName(strName, result);
 
@@ -132,7 +132,7 @@ void XmlTag::FindTagsByName(const CString &strName, CStackArray<XmlTag> &result)
   }
 }
 
-void XmlTag::FindTagsByAttribute(const CString &strAttrib, const CString &strValue, CStackArray<XmlTag> &result)
+void XmlTag::FindTagsByAttribute(const String &strAttrib, const String &strValue, StackArray<XmlTag> &result)
 {
   FindChildrenByAttribute(strAttrib, strValue, result);
 
@@ -146,7 +146,7 @@ void XmlTag::FindTagsByAttribute(const CString &strAttrib, const CString &strVal
   }
 }
 
-void XmlTag::FindChildrenByName(const Scratch::CString &strName, Scratch::CStackArray<XmlTag> &result)
+void XmlTag::FindChildrenByName(const Scratch::String &strName, Scratch::StackArray<XmlTag> &result)
 {
   // force the stack array to only pop, not clear!
   // this is because we add absolute pointers to XmlTag objects in below code and we don't want them to be deleted at the end of the scope
@@ -160,7 +160,7 @@ void XmlTag::FindChildrenByName(const Scratch::CString &strName, Scratch::CStack
   }
 }
 
-void XmlTag::FindChildrenByAttribute(const Scratch::CString &strAttrib, const Scratch::CString &strValue, Scratch::CStackArray<XmlTag> &result)
+void XmlTag::FindChildrenByAttribute(const Scratch::String &strAttrib, const Scratch::String &strValue, Scratch::StackArray<XmlTag> &result)
 {
   // note comment in FindChildrenByName
   result.sa_bOnlyPop = TRUE;
@@ -173,9 +173,9 @@ void XmlTag::FindChildrenByAttribute(const Scratch::CString &strAttrib, const Sc
   }
 }
 
-XmlTag* XmlTag::Query(const Scratch::CString &strQuery)
+XmlTag* XmlTag::Query(const Scratch::String &strQuery)
 {
-  CStackArray<CString> parse;
+  StackArray<String> parse;
   strQuery.Split("/", parse, TRUE);
 
   XmlTag* tag = this;
@@ -186,7 +186,7 @@ XmlTag* XmlTag::Query(const Scratch::CString &strQuery)
   return tag;
 }
 
-XmlQueryPair XmlTag::QueryParse(const Scratch::CString &strQuery)
+XmlQueryPair XmlTag::QueryParse(const Scratch::String &strQuery)
 {
   XmlQueryPair ret;
   ret.bLookingForAttribute = false;
@@ -242,7 +242,7 @@ XmlTag* XmlTag::QueryPairExecute(const XmlQueryPair &pair)
   if(!pair.bLookingForAttribute) {
     return FindTagByName(pair.strName);
   } else {
-    CStackArray<XmlTag> tags;
+    StackArray<XmlTag> tags;
     FindTagsByName(pair.strName, tags);
     if(!pair.bLookingForValue && isdigit(pair.strAttrib[0])) {
       int iIndex = atoi(pair.strAttrib);
@@ -260,7 +260,7 @@ XmlTag* XmlTag::QueryPairExecute(const XmlQueryPair &pair)
   }
 }
 
-XmlTag &XmlTag::operator[](const CString &strQuery)
+XmlTag &XmlTag::operator[](const String &strQuery)
 {
   XmlTag* tag = QueryPairExecute(QueryParse(strQuery));
   if(tag == 0) {
@@ -270,7 +270,7 @@ XmlTag &XmlTag::operator[](const CString &strQuery)
   }
 }
 
-void XmlTag::Parse(CStream &fs)
+void XmlTag::Parse(Stream &fs)
 {
   bool bReadAttributes = true;
   bool bOpenTag = false;
@@ -290,8 +290,8 @@ void XmlTag::Parse(CStream &fs)
       ASSERT(bExpected);
 
       IsComment = true;
-      CString strValue;
-      CString strEnding = "-->";
+      String strValue;
+      String strEnding = "-->";
       int i = 0;
       int iLen = strlen(strEnding);
       while(!fs.AtEOF()) {
@@ -311,7 +311,7 @@ void XmlTag::Parse(CStream &fs)
 
     } else {
       // xml tag
-      CString strName;
+      String strName;
       // read the name of the tag, and get the character we ended with
       char c = fs.ReadUntil(strName, "\r\n\t >/");
       Name = strName;
@@ -337,7 +337,7 @@ void XmlTag::Parse(CStream &fs)
   if(bOpenTag) {
     // start reading the value
     bool bReadValue = true;
-    CString strValue;
+    String strValue;
 
     while(!fs.AtEOF()) {
       char c = fs.ReadChar();

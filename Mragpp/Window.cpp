@@ -21,7 +21,7 @@ CWindow::~CWindow()
   Destroy();
 }
 
-void CWindow::Create(Scratch::CString strTitle, int width, int height, ULONG ulFlags)
+void CWindow::Create(Scratch::String strTitle, int width, int height, ULONG ulFlags)
 {
 #if WINDOWS
   int iScreenWidth = GetSystemMetrics(SM_CXFULLSCREEN);
@@ -52,7 +52,7 @@ void CWindow::Destroy()
   win_pWindow = 0;
 }
 
-void CWindow::SetTitle(const Scratch::CString &strTitle)
+void CWindow::SetTitle(const Scratch::String &strTitle)
 {
   SDL_SetWindowTitle(win_pWindow, strTitle);
 }

@@ -22,9 +22,9 @@ public:
   MragppKeys msg_eKeyCode;
   MragppKeymods msg_eKeyMod;
 
-  Scratch::CString msg_strTextInput;
+  Scratch::String msg_strTextInput;
 
-  Scratch::CString msg_strComposition;
+  Scratch::String msg_strComposition;
   int msg_iEditCursor;
   int msg_iEditSelection;
 

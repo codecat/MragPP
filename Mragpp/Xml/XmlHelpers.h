@@ -5,7 +5,7 @@
 
 MRAGPP_NAMESPACE_BEGIN;
 
-void ParseAttributes(Scratch::CStream &fs, Scratch::CDictionary<Scratch::CString, Scratch::CString> &out_attrs, bool &out_bOpenTag);
+void ParseAttributes(Scratch::Stream &fs, Scratch::Dictionary<Scratch::String, Scratch::String> &out_attrs, bool &out_bOpenTag);
 
 MRAGPP_NAMESPACE_END;
 

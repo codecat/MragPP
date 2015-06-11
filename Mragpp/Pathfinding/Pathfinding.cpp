@@ -45,7 +45,7 @@ void CPathFinding::AddTile(const Vector2i &vPos, bool bSolid)
   tile.til_iID = pth_iAddCounter++;
 }
 
-bool CPathFinding::FindPath(CStackArray<Vector2i> &ret, const Vector2i &vStart, const Vector2i &vEnd, int iMaxTiles)
+bool CPathFinding::FindPath(StackArray<Vector2i> &ret, const Vector2i &vStart, const Vector2i &vEnd, int iMaxTiles)
 {
   ASSERT(ret.Count() == 0);
 

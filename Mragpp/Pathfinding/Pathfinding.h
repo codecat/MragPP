@@ -12,13 +12,13 @@ MRAGPP_NAMESPACE_BEGIN;
 class MRAGPP_EXPORT CPathFinding
 {
 public:
-  Scratch::CStackArray<CPathFindingTile> pth_saTiles;
+  Scratch::StackArray<CPathFindingTile> pth_saTiles;
   bool pth_bDiagonal;
   Vector2i pth_vMapSize;
 
 private:
-  Scratch::CStackArray<CPathFindingNode> pth_saOpenList;
-  Scratch::CStackArray<CPathFindingNode> pth_saClosedList;
+  Scratch::StackArray<CPathFindingNode> pth_saOpenList;
+  Scratch::StackArray<CPathFindingNode> pth_saClosedList;
   CPathFindingNode* pth_pnodStart;
   CPathFindingNode* pth_pnodEnd;
   CPathFindingNode* pth_pnodCurrent;
@@ -31,7 +31,7 @@ public:
 
   void SetSize(int width, int height);
   void AddTile(const Vector2i &vPos, bool bSolid);
-  bool FindPath(Scratch::CStackArray<Vector2i> &ret, const Vector2i &vStart, const Vector2i &vEnd, int iMaxTiles = 0);
+  bool FindPath(Scratch::StackArray<Vector2i> &ret, const Vector2i &vStart, const Vector2i &vEnd, int iMaxTiles = 0);
 
 private:
   CPathFindingNode* FindSmallestF();

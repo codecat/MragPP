@@ -57,9 +57,9 @@ CRectangle::~CRectangle()
 {
 }
 
-Scratch::CString CRectangle::ToString()
+Scratch::String CRectangle::ToString()
 {
-  Scratch::CString ret;
+  Scratch::String ret;
   ret.SetF("{%d, %d, %d, %d}", x, y, w, h);
   return ret;
 }

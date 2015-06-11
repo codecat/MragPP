@@ -124,7 +124,7 @@ void CAnimationJson::Render(CRenderer &rend, const Vector2f &vPos, const Vector2
 void CAnimationJson::Render(CRenderer &rend, const Vector2f &vPos, const Vector2f &vScale, float fRotation)
 {
 	SDLVertex vertices[4];
-	CStackArray<SDLVertex> saVertices;
+	StackArray<SDLVertex> saVertices;
 
 	CTexture* pTexture = NULL;
 

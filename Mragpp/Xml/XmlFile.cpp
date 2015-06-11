@@ -11,7 +11,7 @@ XmlFile::XmlFile()
   Root = 0;
 }
 
-XmlFile::XmlFile(const CString &strFilename)
+XmlFile::XmlFile(const String &strFilename)
 {
   Decleration = 0;
   Root = 0;
@@ -23,13 +23,13 @@ XmlFile::~XmlFile()
   Unload();
 }
 
-void XmlFile::Load(const CString &strFilename)
+void XmlFile::Load(const String &strFilename)
 {
   Unload();
 
   Root = new XmlTag(0);
 
-  CFileStream fs;
+  FileStream fs;
   fs.Open(strFilename, "r");
   while(!fs.AtEOF()) {
     char c = fs.ReadChar();
@@ -61,14 +61,14 @@ void XmlFile::Unload()
   }
 }
 
-void XmlFile::Save(const CString &strFilename)
+void XmlFile::Save(const String &strFilename)
 {
   //TODO
 }
 
 void XmlFile::PrintToConsole(XmlTag &root, int depth)
 {
-  CString strStart;
+  String strStart;
   for(int i=0; i<depth; i++) {
     strStart += "-- ";
   }
@@ -90,12 +90,12 @@ void XmlFile::PrintToConsole()
   }
 }
 
-XmlTag* XmlFile::Query(const Scratch::CString &strQuery)
+XmlTag* XmlFile::Query(const Scratch::String &strQuery)
 {
   return Root->Query(strQuery);
 }
 
-XmlTag &XmlFile::operator[](const CString &strQuery)
+XmlTag &XmlFile::operator[](const String &strQuery)
 {
   return (*Root)[strQuery];
 }

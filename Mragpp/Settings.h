@@ -11,7 +11,7 @@ class MRAGPP_EXPORT CSettingsValue
   friend class CSettings;
 private:
   CSettings* owner;
-  Scratch::CString value;
+  Scratch::String value;
 
 public:
   CSettingsValue();
@@ -20,12 +20,12 @@ public:
   void Set(int iValue);
   void Set(float fValue);
   void Set(bool bValue);
-  void Set(const Scratch::CString &strValue);
+  void Set(const Scratch::String &strValue);
 
   int GetInt();
   float GetFloat();
   bool GetBool();
-  Scratch::CString GetString();
+  Scratch::String GetString();
 
 private:
   void SetChanged();
@@ -35,18 +35,18 @@ class MRAGPP_EXPORT CSettings
 {
   friend class CSettingsValue;
 private:
-  Scratch::CDictionary<Scratch::CString, CSettingsValue> set_values;
+  Scratch::Dictionary<Scratch::String, CSettingsValue> set_values;
   bool set_saved;
 
 public:
   CSettings();
-  CSettings(const Scratch::CString &strFilename);
+  CSettings(const Scratch::String &strFilename);
   ~CSettings();
 
-  void Load(const Scratch::CString &strFilename);
+  void Load(const Scratch::String &strFilename);
   void Save();
 
-  CSettingsValue &operator [](const Scratch::CString &key);
+  CSettingsValue &operator [](const Scratch::String &key);
 };
 
 MRAGPP_NAMESPACE_END;

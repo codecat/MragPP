@@ -90,23 +90,23 @@ public:
   void PutTextureRight(CTexture &texture, float x, float y, float width, float height, float rot, bool bFlipHor, bool bFlipVer);
   void PutTextureRight(CTexture &texture, float x, float y, float width, float height, float rot, Vector2f vCenter, bool centerOffset = false, bool bFlipHor = false, bool bFlipVer = false);
 
-  void MakeTextTexture(CTexture &texture, const Scratch::CString &strText, COLOR col);
+  void MakeTextTexture(CTexture &texture, const Scratch::String &strText, COLOR col);
 
-  void PutText(const Scratch::CString &strText, float x, float y);
-  void PutText(const Scratch::CString &strText, float x, float y, float rot);
-  void PutText(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter);
+  void PutText(const Scratch::String &strText, float x, float y);
+  void PutText(const Scratch::String &strText, float x, float y, float rot);
+  void PutText(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter);
 
-  void PutTextColored(const Scratch::CString &strText, float x, float y, COLOR col);
-  void PutTextColored(const Scratch::CString &strText, float x, float y, float rot, COLOR col);
-  void PutTextColored(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter, COLOR col);
+  void PutTextColored(const Scratch::String &strText, float x, float y, COLOR col);
+  void PutTextColored(const Scratch::String &strText, float x, float y, float rot, COLOR col);
+  void PutTextColored(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter, COLOR col);
 
-  void PutTextCenter(const Scratch::CString &strText, float x, float y);
-  void PutTextCenter(const Scratch::CString &strText, float x, float y, float rot);
-  void PutTextCenter(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter);
+  void PutTextCenter(const Scratch::String &strText, float x, float y);
+  void PutTextCenter(const Scratch::String &strText, float x, float y, float rot);
+  void PutTextCenter(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter);
 
-  void PutTextRight(const Scratch::CString &strText, float x, float y);
-  void PutTextRight(const Scratch::CString &strText, float x, float y, float rot);
-  void PutTextRight(const Scratch::CString &strText, float x, float y, float rot, const Vector2f &vCenter);
+  void PutTextRight(const Scratch::String &strText, float x, float y);
+  void PutTextRight(const Scratch::String &strText, float x, float y, float rot);
+  void PutTextRight(const Scratch::String &strText, float x, float y, float rot, const Vector2f &vCenter);
 
   void Present();
 };

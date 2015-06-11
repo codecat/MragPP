@@ -34,7 +34,7 @@ void CSettingsValue::Set(bool bValue)
   }
 }
 
-void CSettingsValue::Set(const CString &strValue)
+void CSettingsValue::Set(const String &strValue)
 {
   value = strValue;
 }
@@ -54,7 +54,7 @@ bool CSettingsValue::GetBool()
   return value.ToLower() == "true";
 }
 
-Scratch::CString CSettingsValue::GetString()
+Scratch::String CSettingsValue::GetString()
 {
   return value;
 }
@@ -71,7 +71,7 @@ CSettings::CSettings()
   set_saved = false;
 }
 
-CSettings::CSettings(const CString &strFilename)
+CSettings::CSettings(const String &strFilename)
 {
   Load(strFilename);
 }
@@ -81,21 +81,21 @@ CSettings::~CSettings()
   ASSERT(set_saved);
 }
 
-void CSettings::Load(const CString &strFilename)
+void CSettings::Load(const String &strFilename)
 {
-  CFileStream fs;
+  FileStream fs;
   if(!fs.Open(strFilename, "r")) {
     return;
   }
 
   while(!fs.AtEOF()) {
-    CString strLine = fs.ReadLine();
+    String strLine = fs.ReadLine();
 
     if(strlen(strLine) == 0 || strLine[0] == '#') {
       continue;
     }
 
-    CStackArray<CString> aParse;
+    StackArray<String> aParse;
     strLine.Split("=", aParse);
 
     CSettingsValue &val = set_values[aParse[0]];
@@ -115,7 +115,7 @@ void CSettings::Save()
   set_saved = true;
 }
 
-CSettingsValue &CSettings::operator [](const CString &key)
+CSettingsValue &CSettings::operator [](const String &key)
 {
   return set_values[key];
 }

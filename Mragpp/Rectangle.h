@@ -27,7 +27,7 @@ public:
   CRectangle(const SDL_Rect &rect);
   ~CRectangle();
 
-  Scratch::CString ToString();
+  Scratch::String ToString();
 
   void Translate(const Vector2f &v);
   void Rotate(float fDegrees);
@@ -47,9 +47,9 @@ public:
   static bool PointInPolygon(const Vector2f &p, const Vector2f* poly, int vertices);
 };
 
-inline CRectangle ParseRectangle(const Scratch::CString &str)
+inline CRectangle ParseRectangle(const Scratch::String &str)
 {
-  Scratch::CStackArray<Scratch::CString> parse;
+  Scratch::StackArray<Scratch::String> parse;
   str.Split(",", parse, TRUE);
 
   CRectangle ret;

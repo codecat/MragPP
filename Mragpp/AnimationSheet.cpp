@@ -115,7 +115,7 @@ void CAnimation::Load(XmlTag &tagAnim)
 
   ani_state.iCurrentFrame = ani_iStartFrame;
 
-  CStackArray<XmlTag> xmlFrames;
+  StackArray<XmlTag> xmlFrames;
   tagAnim.FindChildrenByName("frame", xmlFrames);
 
   for(int i=0; i<xmlFrames.Count(); i++) {
@@ -124,7 +124,7 @@ void CAnimation::Load(XmlTag &tagAnim)
     frame.Load(tag);
   }
 
-  CStackArray<XmlTag> xmlAliases;
+  StackArray<XmlTag> xmlAliases;
   tagAnim.FindChildrenByName("alias", xmlAliases);
 
   for(int i=0; i<xmlAliases.Count(); i++) {
@@ -224,7 +224,7 @@ CAnimationSheet::CAnimationSheet()
   ans_bLoaded = FALSE;
 }
 
-CAnimationSheet::CAnimationSheet(CGame* pGame, const CString &strFilename)
+CAnimationSheet::CAnimationSheet(CGame* pGame, const String &strFilename)
 {
   Load(pGame, strFilename);
   ans_bCenter = FALSE;
@@ -235,7 +235,7 @@ CAnimationSheet::~CAnimationSheet()
   Unload();
 }
 
-CAnimation* CAnimationSheet::GetAnimation(const Scratch::CString &strName)
+CAnimation* CAnimationSheet::GetAnimation(const Scratch::String &strName)
 {
   for(int i=0; i<ans_saAnimations.Count(); i++) {
     CAnimation &anim = ans_saAnimations[i];
@@ -246,7 +246,7 @@ CAnimation* CAnimationSheet::GetAnimation(const Scratch::CString &strName)
   return 0;
 }
 
-void CAnimationSheet::Load(CGame* pGame, const CString &strFilename)
+void CAnimationSheet::Load(CGame* pGame, const String &strFilename)
 {
   ans_pRenderer = &pGame->Renderer;
 
@@ -259,7 +259,7 @@ void CAnimationSheet::Load(CGame* pGame, const CString &strFilename)
 
   if(xmlSheet->Attributes.HasKey("name")) { ans_strName = xmlSheet->Attributes["name"]; }
 
-  CStackArray<XmlTag> xmlAnimations;
+  StackArray<XmlTag> xmlAnimations;
   xmlSheet->FindChildrenByName("anim", xmlAnimations);
 
   for(int i=0; i<xmlAnimations.Count(); i++) {
@@ -284,7 +284,7 @@ void CAnimationSheet::Unload()
   ans_bLoaded = FALSE;
 }
 
-void CAnimationSheet::SetAlphaMult(const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha)
+void CAnimationSheet::SetAlphaMult(const Scratch::String &strAnimationName, COLOR_VALUE iAlpha)
 {
   CAnimation* pAnim = GetAnimation(strAnimationName);
   ASSERT(pAnim != 0);
@@ -295,7 +295,7 @@ void CAnimationSheet::SetAlphaMult(const Scratch::CString &strAnimationName, COL
   pAnim->ani_iAlphaMultiplier = iAlpha;
 }
 
-void CAnimationSheet::SetBlendingMode(const Scratch::CString &strAnimationName, ETextureBlendMode ebm)
+void CAnimationSheet::SetBlendingMode(const Scratch::String &strAnimationName, ETextureBlendMode ebm)
 {
   CAnimation* pAnim = GetAnimation(strAnimationName);
   ASSERT(pAnim != 0);
@@ -306,7 +306,7 @@ void CAnimationSheet::SetBlendingMode(const Scratch::CString &strAnimationName, 
   pAnim->ani_ebmBlendMode = ebm;
 }
 
-void CAnimationSheet::SetColorMult(const Scratch::CString &strAnimationName, COLOR colMult)
+void CAnimationSheet::SetColorMult(const Scratch::String &strAnimationName, COLOR colMult)
 {
   CAnimation* pAnim = GetAnimation(strAnimationName);
   ASSERT(pAnim != 0);
@@ -317,7 +317,7 @@ void CAnimationSheet::SetColorMult(const Scratch::CString &strAnimationName, COL
   pAnim->ani_colMultiplier = colMult;
 }
 
-Vector2i CAnimationSheet::Render(const CString &strName, const Vector2f &vPos, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheet::Render(const String &strName, const Vector2f &vPos, float fRotation, float fOverX, float fOverY)
 {
   CAnimation* pAnim = GetAnimation(strName);
   ASSERT(pAnim != 0);
@@ -333,7 +333,7 @@ Vector2i CAnimationSheet::Render(const CString &strName, const Vector2f &vPos, f
   return pAnim->Render(vPos, pAnim->ani_state, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheet::Render(const Scratch::CString &strName, const Vector2f &vPos, CAnimationState &state, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheet::Render(const Scratch::String &strName, const Vector2f &vPos, CAnimationState &state, float fRotation, float fOverX, float fOverY)
 {
   CAnimation* pAnim = GetAnimation(strName);
   ASSERT(pAnim != 0);
@@ -349,7 +349,7 @@ Vector2i CAnimationSheet::Render(const Scratch::CString &strName, const Vector2f
   return pAnim->Render(vPos, state, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheet::Render(const Scratch::CString &strName, const Vector2f &vPos, const Vector2f &vSize, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheet::Render(const Scratch::String &strName, const Vector2f &vPos, const Vector2f &vSize, float fRotation, float fOverX, float fOverY)
 {
   CAnimation* pAnim = GetAnimation(strName);
   ASSERT(pAnim != 0);
@@ -365,7 +365,7 @@ Vector2i CAnimationSheet::Render(const Scratch::CString &strName, const Vector2f
   return pAnim->Render(vPos, vSize, pAnim->ani_state, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheet::Render(const Scratch::CString &strName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheet::Render(const Scratch::String &strName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation, float fOverX, float fOverY)
 {
   CAnimation* pAnim = GetAnimation(strName);
   ASSERT(pAnim != 0);
@@ -394,7 +394,7 @@ CAnimationSheetCollection::~CAnimationSheetCollection()
   Unload();
 }
 
-void CAnimationSheetCollection::Load(CGame* pGame, const CString &strFilename)
+void CAnimationSheetCollection::Load(CGame* pGame, const String &strFilename)
 {
   Unload();
 
@@ -405,7 +405,7 @@ void CAnimationSheetCollection::Load(CGame* pGame, const CString &strFilename)
     return;
   }
 
-  CStackArray<XmlTag> sheets;
+  StackArray<XmlTag> sheets;
   pSheets->FindChildrenByName("sheet", sheets);
 
   for(int i=0; i<sheets.Count(); i++) {
@@ -421,13 +421,13 @@ void CAnimationSheetCollection::Unload()
   }
 }
 
-void CAnimationSheetCollection::Add(CGame* pGame, const CString &strFilename)
+void CAnimationSheetCollection::Add(CGame* pGame, const String &strFilename)
 {
   CAnimationSheet &sheet = asc_saSheets.Push();
   sheet.Load(pGame, strFilename);
 }
 
-CAnimationSheet* CAnimationSheetCollection::GetSheet(const CString &strName)
+CAnimationSheet* CAnimationSheetCollection::GetSheet(const String &strName)
 {
   for(int i=0; i<asc_saSheets.Count(); i++) {
     if(asc_saSheets[i].ans_strName == strName) {
@@ -437,7 +437,7 @@ CAnimationSheet* CAnimationSheetCollection::GetSheet(const CString &strName)
   return 0;
 }
 
-void CAnimationSheetCollection::SetAlphaMult(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, COLOR_VALUE iAlpha)
+void CAnimationSheetCollection::SetAlphaMult(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, COLOR_VALUE iAlpha)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -448,7 +448,7 @@ void CAnimationSheetCollection::SetAlphaMult(const Scratch::CString &strSheetNam
   pSheet->SetAlphaMult(strAnimationName, iAlpha);
 }
 
-void CAnimationSheetCollection::SetBlendingMode(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, ETextureBlendMode ebm)
+void CAnimationSheetCollection::SetBlendingMode(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, ETextureBlendMode ebm)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -459,7 +459,7 @@ void CAnimationSheetCollection::SetBlendingMode(const Scratch::CString &strSheet
   pSheet->SetBlendingMode(strAnimationName, ebm);
 }
 
-void CAnimationSheetCollection::SetColorMult(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, COLOR colMult)
+void CAnimationSheetCollection::SetColorMult(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, COLOR colMult)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -470,7 +470,7 @@ void CAnimationSheetCollection::SetColorMult(const Scratch::CString &strSheetNam
   pSheet->SetColorMult(strAnimationName, colMult);
 }
 
-Vector2i CAnimationSheetCollection::Render(const CString &strSheetName, const CString &strAnimationName, const Vector2f &vPos, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheetCollection::Render(const String &strSheetName, const String &strAnimationName, const Vector2f &vPos, float fRotation, float fOverX, float fOverY)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -481,7 +481,7 @@ Vector2i CAnimationSheetCollection::Render(const CString &strSheetName, const CS
   return pSheet->Render(strAnimationName, vPos, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheetCollection::Render(const CString &strSheetName, const CString &strAnimationName, const Vector2f &vPos, CAnimationState &state, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheetCollection::Render(const String &strSheetName, const String &strAnimationName, const Vector2f &vPos, CAnimationState &state, float fRotation, float fOverX, float fOverY)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -492,7 +492,7 @@ Vector2i CAnimationSheetCollection::Render(const CString &strSheetName, const CS
   return pSheet->Render(strAnimationName, vPos, state, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheetCollection::Render(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheetCollection::Render(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, float fRotation, float fOverX, float fOverY)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -503,7 +503,7 @@ Vector2i CAnimationSheetCollection::Render(const Scratch::CString &strSheetName,
   return pSheet->Render(strAnimationName, vPos, vSize, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheetCollection::Render(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation, float fOverX, float fOverY)
+Vector2i CAnimationSheetCollection::Render(const Scratch::String &strSheetName, const Scratch::String &strAnimationName, const Vector2f &vPos, const Vector2f &vSize, CAnimationState &state, float fRotation, float fOverX, float fOverY)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -514,7 +514,7 @@ Vector2i CAnimationSheetCollection::Render(const Scratch::CString &strSheetName,
   return pSheet->Render(strAnimationName, vPos, vSize, state, fRotation, fOverX, fOverY);
 }
 
-Vector2i CAnimationSheetCollection::GetSize(const Scratch::CString &strSheetName, const Scratch::CString &strAnimationName)
+Vector2i CAnimationSheetCollection::GetSize(const Scratch::String &strSheetName, const Scratch::String &strAnimationName)
 {
   CAnimationSheet* pSheet = GetSheet(strSheetName);
   ASSERT(pSheet != 0);
@@ -531,7 +531,7 @@ Vector2i CAnimationSheetCollection::GetSize(const Scratch::CString &strSheetName
   return pAnim->ani_vSize.GetAs<2,int>();
 }
 
-CAnimationSheet &CAnimationSheetCollection::operator[](const CString &strName)
+CAnimationSheet &CAnimationSheetCollection::operator[](const String &strName)
 {
   return *GetSheet(strName);
 }

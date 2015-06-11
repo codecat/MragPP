@@ -13,19 +13,19 @@ public:
   XmlTag* Root;
 
   XmlFile();
-  XmlFile(const Scratch::CString &strFilename);
+  XmlFile(const Scratch::String &strFilename);
   ~XmlFile();
 
-  void Load(const Scratch::CString &strFilename);
+  void Load(const Scratch::String &strFilename);
   void Unload();
 
-  void Save(const Scratch::CString &strFilename);
+  void Save(const Scratch::String &strFilename);
 
   void PrintToConsole(XmlTag &root, int depth);
   void PrintToConsole();
 
-  XmlTag* Query(const Scratch::CString &strQuery);
-  XmlTag &operator[](const Scratch::CString &strQuery);
+  XmlTag* Query(const Scratch::String &strQuery);
+  XmlTag &operator[](const Scratch::String &strQuery);
 };
 
 MRAGPP_NAMESPACE_END;

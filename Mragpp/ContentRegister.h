@@ -14,9 +14,9 @@ class MRAGPP_EXPORT CContentRegister
 {
 public:
 	CGame* cnt_pGame;
-	Scratch::CDictionary<Scratch::CString, CTexture> cnt_dicTextures;
-	Scratch::CDictionary<Scratch::CString, CFont> cnt_dicFonts;
-	Scratch::CDictionary<Scratch::CString, CAnimationSheet> cnt_dicAnimations;
+	Scratch::Dictionary<Scratch::String, CTexture> cnt_dicTextures;
+	Scratch::Dictionary<Scratch::String, CFont> cnt_dicFonts;
+	Scratch::Dictionary<Scratch::String, CAnimationSheet> cnt_dicAnimations;
 
 public:
 	CContentRegister();
@@ -25,9 +25,9 @@ public:
 	void Initialize(CGame* pGame);
 	void Clear();
 
-	CTexture &Texture(const Scratch::CFilename &fnm);
-	CFont &Font(const Scratch::CFilename &fnm, int iPtSize);
-	CAnimationSheet &Animation(const Scratch::CFilename &fnm);
+	CTexture &Texture(const Scratch::Filename &fnm);
+	CFont &Font(const Scratch::Filename &fnm, int iPtSize);
+	CAnimationSheet &Animation(const Scratch::Filename &fnm);
 };
 
 MRAGPP_NAMESPACE_END;

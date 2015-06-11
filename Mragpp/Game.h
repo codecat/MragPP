@@ -14,7 +14,7 @@ MRAGPP_NAMESPACE_BEGIN;
 class MRAGPP_EXPORT CGame
 {
 public:
-  Scratch::CString gam_strWindowTitle;
+  Scratch::String gam_strWindowTitle;
   int gam_iWidth;
   int gam_iHeight;
   ULONG gam_ulWindowFlags;
@@ -27,7 +27,7 @@ public:
   CPaths Paths;
   CContentRegister Content;
 
-  Scratch::CString gam_strSystemFont;
+  Scratch::String gam_strSystemFont;
   CFont gam_fntSystem;
 
   bool gam_bCatchMessages;

@@ -66,9 +66,9 @@ typedef Vector<4, int> Vector4i;
 typedef Vector<4, float> Vector4f;
 typedef Vector<4, double> Vector4d;
 
-inline Vector2f ParseVector2f(const Scratch::CString &str)
+inline Vector2f ParseVector2f(const Scratch::String &str)
 {
-  Scratch::CStackArray<Scratch::CString> parse;
+  Scratch::StackArray<Scratch::String> parse;
   str.Split(",", parse, TRUE);
   return Vector2f((float)atof(parse[0]), (float)atof(parse[1]));
 }

@@ -11,7 +11,7 @@ MRAGPP_NAMESPACE_BEGIN;
 class MRAGPP_EXPORT CAnimationAtlasFrame : public CAnimationFrame
 {
 public:
-	Scratch::CString anf_strName;
+	Scratch::String anf_strName;
 	Vector2f anf_vSize;
 	Vector2f anf_vOffset2;
 
@@ -30,17 +30,17 @@ class MRAGPP_EXPORT CAnimationAtlas
 {
 public:
 	CTexture atl_texture;
-	Scratch::CFilename atl_fnmTexture;
+	Scratch::Filename atl_fnmTexture;
 
 	CAnimationState atl_state;
 
-	Scratch::CStackArray<CAnimationAtlasFrame> atl_saFrames;
+	Scratch::StackArray<CAnimationAtlasFrame> atl_saFrames;
 
 public:
 	CAnimationAtlas();
 	~CAnimationAtlas();
 
-	void Load(CGame* pGame, const Scratch::CFilename &fnm);
+	void Load(CGame* pGame, const Scratch::Filename &fnm);
 
 	void AdvanceFrame(); // this will also unpause the animation state
 	void AdvanceFrame(CAnimationState &state); // this will also unpause the animation state
