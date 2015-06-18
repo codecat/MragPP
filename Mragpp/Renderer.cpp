@@ -41,6 +41,7 @@ void CRenderer::Create(CWindow &window)
 
   static bool _bInitializedGlew = false;
   if(!_bInitializedGlew) {
+    glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if(err != GLEW_OK) {
       printf("Glew initialization error: %d\n", err);
