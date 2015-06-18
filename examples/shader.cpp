@@ -48,11 +48,6 @@ CShaderExample::CShaderExample()
 	m_iIBO = 0;
 
 	m_iFrameCount = 0;
-
-	//TODO: Check if this is really required before context is created
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 }
 
 CShaderExample::~CShaderExample()
