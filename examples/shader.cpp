@@ -12,7 +12,9 @@ class CShaderExample : public CGame
 public:
 	GLuint m_iProgram;
 	GLint m_iVertexPos2DPosition;
+	GLint m_iVertexPos2DTexCoord;
 	GLint m_iFragmentFrameCount;
+	GLint m_iFragmentSampler;
 	GLuint m_iVBO;
 	GLuint m_iIBO;
 
@@ -39,6 +41,9 @@ CShaderExample::CShaderExample()
 
 	m_iProgram = 0;
 	m_iVertexPos2DPosition = -1;
+	m_iVertexPos2DTexCoord = -1;
+	m_iFragmentFrameCount = -1;
+	m_iFragmentSampler = -1;
 	m_iVBO = 0;
 	m_iIBO = 0;
 
@@ -92,22 +97,31 @@ void CShaderExample::Initialize()
 
 	// create vertex shader
 	GLuint iShaderVertex = CompileShader("#version 130\n"
-																			 "in vec2 s_vPos;\n"
+																			 "in vec2 in_vPos;\n"
+																			 "in vec2 in_vTexCoord;\n"
+																			 "out vec2 s_vTexCoord;\n"
 																			 "void main() {\n"
-																			 "  gl_Position = vec4(s_vPos.x, s_vPos.y, 0, 1);\n"
+																			 "  gl_Position = vec4(in_vPos, 0, 1);\n"
+																			 "  s_vTexCoord = (in_vTexCoord * vec2(1, -1) + vec2(1, 1)) / 2;\n"
 																			 "}\n", GL_VERTEX_SHADER);
 
 	// create fragment shader
 	GLuint iShaderFragment = CompileShader("#version 130\n"
+																				 "in vec2 s_vTexCoord;\n"
 																				 "out vec4 s_colOut;\n"
 																				 "uniform float s_fFrameCount;\n"
+																				 "uniform sampler2DRect s_texSampler;\n"
 																				 "void main() {\n"
-																				 "  s_colOut = vec4(1, 1, 0.5 + cos(s_fFrameCount / 20) * 0.5, 1);\n"
+																				 //"  s_colOut = vec4(1, 1, 0.5 + cos(s_fFrameCount / 20) * 0.5, 1);\n"
+																				 "  s_colOut = texture(s_texSampler, s_vTexCoord * textureSize(s_texSampler));\n"
 																				 "}\n", GL_FRAGMENT_SHADER);
 
 	// attach shaders to program
 	glAttachShader(m_iProgram, iShaderVertex);
 	glAttachShader(m_iProgram, iShaderFragment);
+
+	// explicitly define what the fragment data location is
+	glBindFragDataLocation(m_iProgram, 0, "s_colOut");
 
 	// link program
 	glLinkProgram(m_iProgram);
@@ -129,16 +143,28 @@ void CShaderExample::Initialize()
 		delete[] buffer;
 	}
 
-	// get input attribute for vertex shader
-	m_iVertexPos2DPosition = glGetAttribLocation(m_iProgram, "s_vPos");
+	// get input attribute for vertex shader position
+	m_iVertexPos2DPosition = glGetAttribLocation(m_iProgram, "in_vPos");
 	if(m_iVertexPos2DPosition == -1) {
 		printf("Couldn't find position attribute\n");
 	}
 
-	// get input attribute for frame count
+	// get input attribute for vertex shader texcoord
+	m_iVertexPos2DTexCoord = glGetAttribLocation(m_iProgram, "in_vTexCoord");
+	if(m_iVertexPos2DTexCoord == -1) {
+		printf("Couldn't find texcoord attribute\n");
+	}
+
+	// get uniform location for frame count
 	m_iFragmentFrameCount = glGetUniformLocation(m_iProgram, "s_fFrameCount");
 	if(m_iFragmentFrameCount == -1) {
 		printf("Couldn't find frame count uniform\n");
+	}
+
+	// get uniform location for sampler
+	m_iFragmentSampler = glGetUniformLocation(m_iProgram, "s_texSampler");
+	if(m_iFragmentSampler == -1) {
+		printf("Couldn't find sampler uniform\n");
 	}
 
 	//TODO: Check if this is required
@@ -146,14 +172,21 @@ void CShaderExample::Initialize()
 
 	// set up vbo
 	GLfloat aVertexData[] = {
+		// vertices
 		-0.5f, -0.5f,
 		 0.5f, -0.5f,
 		 0.5f,  0.5f,
-		-0.5f,  0.5f
+		-0.5f,  0.5f,
+
+		// texcoords
+		-1.0f, -1.0f,
+		 1.0f, -1.0f,
+		 1.0f,  1.0f,
+		-1.0f,  1.0f
 	};
 	glGenBuffers(1, &m_iVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_iVBO);
-	glBufferData(GL_ARRAY_BUFFER, 2 * 4 * sizeof(GLfloat), aVertexData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 2 * 2 * 4 * sizeof(GLfloat), aVertexData, GL_STATIC_DRAW);
 
 	// set up ibo
 	GLuint aIndexData[] = { 0, 1, 2, 3 };
@@ -176,6 +209,13 @@ void CShaderExample::Update()
 	CGame::Update();
 }
 
+#define OGL_CHECK_ERROR() { \
+		GLenum err = glGetError(); \
+		if(err != GL_NO_ERROR) { \
+			printf("OGL Error on line %d: %d (%s)\n", __LINE__, err, glewGetErrorString(err)); \
+		} \
+	}
+
 void CShaderExample::Render()
 {
 	Renderer.SetColor(COL_BLACK | MRAG_ALPHA_OPAQUE);
@@ -184,35 +224,50 @@ void CShaderExample::Render()
 	// bind program
 	glUseProgram(m_iProgram);
 
-	// enable attribute
+	// enable attributes
 	glEnableVertexAttribArray(m_iVertexPos2DPosition);
+	glEnableVertexAttribArray(m_iVertexPos2DTexCoord);
 
-	// set vertex data
+	// set layout of vertex data
 	glBindBuffer(GL_ARRAY_BUFFER, m_iVBO);
 	glVertexAttribPointer(m_iVertexPos2DPosition, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), NULL);
 
+	// set layout of texcoord data
+	glVertexAttribPointer(m_iVertexPos2DTexCoord, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (void*)(8 * sizeof(GLfloat)));
+
 	// set frame count uniform
-	glUniform1f(m_iFragmentFrameCount, (float)(m_iFrameCount++));
+	if(m_iFragmentFrameCount != -1) {
+		glUniform1f(m_iFragmentFrameCount, (float)(m_iFrameCount++));
+	}
+
+	// set sampler uniform
+	if(m_iFragmentSampler != -1) {
+		glActiveTexture(GL_TEXTURE0);
+		SDL_GL_BindTexture(m_texture, NULL, NULL);
+		glUniform1i(m_iFragmentSampler, 0);
+	}
 
 	// set index data and render
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_iIBO);
 	glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, NULL);
 
-	// disable attribute
+	// unbind samplers
+	SDL_GL_UnbindTexture(m_texture);
+
+	// disable attributes
+	glDisableVertexAttribArray(m_iVertexPos2DTexCoord);
 	glDisableVertexAttribArray(m_iVertexPos2DPosition);
 
 	// unbind program
 	glUseProgram(0);
-
-	// draw a random thing to make sure that still works
-	Renderer.PutTexture(m_texture, 300, 100);
 
 	CGame::Render();
 }
 
 int main()
 {
-	FindExampleContentPath();
+	//FindExampleContentPath();
+	chdir("/home/nimble/dev/mragpp/examples_content");
 
 	CShaderExample game;
 	game.Run();
