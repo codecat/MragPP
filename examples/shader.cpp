@@ -264,10 +264,9 @@ void CShaderExample::Render()
 	CGame::Render();
 }
 
-int main()
+MAIN
 {
-	//FindExampleContentPath();
-	chdir("/home/nimble/dev/mragpp/examples_content");
+	FindExampleContentPath();
 
 	CShaderExample game;
 	game.Run();

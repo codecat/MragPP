@@ -3,9 +3,18 @@
 
 #if WINDOWS
 #include <Windows.h>
+#include <direct.h>
+
+#ifdef _SDL_H
+#include <SDL2/SDL_main.h>
+#endif
+
+#define MAIN int main(int argc, char* argv[])
 #else
 #include <unistd.h>
 #include <errno.h>
+
+#define MAIN int main()
 #endif
 
 /**
@@ -26,16 +35,17 @@ inline void FindExampleContentPath()
 			_chdir("..");
 		}
 	} while(dwFlags == INVALID_FILE_ATTRIBUTES);
+	_chdir("examples_content/");
 #else
-  while(access("examples_content/", F_OK) != 0) {
+	while(access("examples_content/", F_OK) != 0) {
 		if(errno == ENOENT || errno == ENOTDIR) {
 			chdir("..");
 		} else {
 			break;
 		}
 	}
-#endif
 	chdir("examples_content/");
+#endif
 	char szCwd[300];
 	getcwd(szCwd, 300);
 	printf("Cwd: %s\n", szCwd);

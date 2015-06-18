@@ -79,6 +79,11 @@ find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 
+set(STDCPP "")
+if(NOT WIN32)
+	set(STDCPP "stdc++")
+endif()
+
 include_directories(.
 	Mragpp/
 	Mragpp/Scratch/
@@ -97,7 +102,7 @@ target_link_libraries(Mragpp
 	${SDLMIXER_LIBRARY}
 	${OPENGL_LIBRARIES}
 	${GLEW_LIBRARIES}
-	stdc++
+	${STDCPP}
 )
 
 set_target_properties(Mragpp PROPERTIES MACOSX_RPATH 1)

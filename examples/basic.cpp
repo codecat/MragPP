@@ -1,5 +1,7 @@
 #include <Game.h>
 
+#include "example.h"
+
 using namespace Scratch;
 using namespace Mragpp;
 
@@ -49,7 +51,7 @@ void CBasic::Render()
 	CGame::Render();
 }
 
-int main()
+MAIN
 {
 	CBasic game;
 	game.Run();

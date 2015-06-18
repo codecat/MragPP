@@ -82,7 +82,7 @@ void CSoundExample::Render()
   CGame::Render();
 }
 
-int main()
+MAIN
 {
   FindExampleContentPath();
 
