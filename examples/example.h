@@ -30,7 +30,7 @@ inline void FindExampleContentPath()
 #if WINDOWS
 	DWORD dwFlags = 0;
 	do {
-		dwFlags = GetFileAttributesA("content");
+		dwFlags = GetFileAttributesA("examples_content");
 		if(dwFlags == INVALID_FILE_ATTRIBUTES) {
 			_chdir("..");
 		}
