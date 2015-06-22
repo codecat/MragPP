@@ -50,6 +50,8 @@ add_library(Mragpp
 	Mragpp/Sound.cpp Mragpp/Sound.h
 	Mragpp/SoundChannel.cpp Mragpp/SoundChannel.h
 	Mragpp/Music.cpp Mragpp/Music.h
+	Mragpp/Shader.cpp Mragpp/Shader.h
+	Mragpp/VBO.cpp Mragpp/VBO.h
 	Mragpp/Pathfinding/Node.cpp Mragpp/Pathfinding/Node.h
 	Mragpp/Pathfinding/Pathfinding.cpp Mragpp/Pathfinding/Pathfinding.h
 	Mragpp/Pathfinding/Tile.cpp Mragpp/Pathfinding/Tile.h
