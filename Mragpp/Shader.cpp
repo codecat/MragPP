@@ -123,6 +123,7 @@ bool CShader::LinkProgram(CGame* pGame)
 			printf("%s\n", buffer);
 		}
 		delete[] buffer;
+		return false;
 	}
 
 	// get input attribute for vertex shader position
@@ -137,6 +138,8 @@ bool CShader::LinkProgram(CGame* pGame)
 		// don't report, because this is most likely intentional
 		//printf("Couldn't find texcoord attribute\n");
 	}
+
+	return true;
 }
 
 bool CShader::LoadVertexShader(const Filename &fnmVertex)
