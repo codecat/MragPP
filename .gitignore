@@ -23,3 +23,6 @@ xcode/
 
 # Mac specific
 .DS_Store
+
+# Qt Creator
+CMakeLists.txt.user
