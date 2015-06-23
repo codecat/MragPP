@@ -31,6 +31,8 @@ public:
 	CShader();
 	~CShader();
 
+	void Clear();
+
 	bool LoadShader(const Scratch::Filename &fnm, int type);
 	unsigned int CompileShader(const char* str, int type, bool &bSuccess);
 

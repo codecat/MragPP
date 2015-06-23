@@ -18,8 +18,8 @@ MRAGPP_NAMESPACE_BEGIN;
 CShader::CShader()
 {
 	sha_iProgram = 0;
-	sha_iShaderVertex = -1;
-	sha_iShaderFragment = -1;
+	sha_iShaderVertex = 0;
+	sha_iShaderFragment = 0;
 	sha_iPosAttrib = -1;
 	sha_iTexCoordAttrib = -1;
 
@@ -30,8 +30,22 @@ CShader::CShader()
 
 CShader::~CShader()
 {
+	Clear();
+}
+
+void CShader::Clear()
+{
 	if(sha_iProgram > 0) {
 		glDeleteProgram(sha_iProgram);
+		sha_iProgram = 0;
+	}
+	if(sha_iShaderVertex > 0) {
+		glDeleteShader(sha_iShaderVertex);
+		sha_iShaderVertex = 0;
+	}
+	if(sha_iShaderFragment > 0) {
+		glDeleteShader(sha_iShaderFragment);
+		sha_iShaderFragment = 0;
 	}
 }
 
@@ -56,6 +70,11 @@ bool CShader::LoadShader(const Filename &fnm, int type)
 	GLuint iShader = CompileShader(strCode, type, bSuccess);
 	if(bSuccess) {
 		glAttachShader(sha_iProgram, iShader);
+		if(type == GL_VERTEX_SHADER) {
+			sha_iShaderVertex = iShader;
+		} else if(type == GL_FRAGMENT_SHADER) {
+			sha_iShaderFragment = iShader;
+		}
 	}
 	return bSuccess;
 }
