@@ -47,6 +47,7 @@ void CShader::Clear()
 		glDeleteShader(sha_iShaderFragment);
 		sha_iShaderFragment = 0;
 	}
+	sha_bReady = false;
 }
 
 bool CShader::LoadShader(const Filename &fnm, int type)
@@ -157,6 +158,7 @@ bool CShader::LinkProgram(CGame* pGame)
 		//printf("Couldn't find texcoord attribute\n");
 	}
 
+	sha_bReady = true;
 	return true;
 }
 

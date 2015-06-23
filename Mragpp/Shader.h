@@ -14,6 +14,7 @@ class CShader
 public:
 	CGame* sha_pGame;
 
+	bool sha_bReady;
 	unsigned int sha_iProgram;
 	unsigned int sha_iShaderVertex;
 	unsigned int sha_iShaderFragment;
