@@ -28,6 +28,45 @@
 #include "SpecialMath.h"
 #include "Colors.h"
 
+#include <SDL2/SDL.h>
+#ifndef _MSC_VER
+#include <signal.h>
+
+#ifdef ASSERT
+#undef ASSERT
+#endif
+#define ASSERT(x) { \
+  static UBYTE _ubWasHere = 0; \
+  if(!_ubWasHere) { \
+    if(!(x)) { \
+      SDL_MessageBoxButtonData _mbbs[] = { \
+        { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT | SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "Ignore" }, \
+        { 0, 1, "Abort" }, \
+        { 0, 2, "Break" } \
+      }; \
+      Scratch::String _mbt; \
+      _mbt.SetF("Assertion failed:\n\n%s:%d\n\n\"%s\"", __FILE__, __LINE__, #x); \
+      SDL_MessageBoxData _mbd = { \
+        SDL_MESSAGEBOX_WARNING, \
+        NULL, \
+        "Assertion failed", \
+        _mbt, \
+        3, _mbbs \
+      }; \
+      int _iButton = -1; \
+      SDL_ShowMessageBox(&_mbd, &_iButton); \
+      if(_iButton == 0) { \
+        _ubWasHere = 1; \
+      } else if(_iButton == 1) { \
+        exit(1); \
+      } else if(_iButton == 2) { \
+        raise(SIGINT); \
+      } \
+    } \
+  } \
+}
+#endif
+
 MRAGPP_NAMESPACE_BEGIN;
 class CPath;
 

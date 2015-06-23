@@ -2,7 +2,6 @@
 #include "Shader.h"
 #include "Game.h"
 
-#include <SDL.h>
 #include <GL/glew.h>
 
 using namespace Scratch;
