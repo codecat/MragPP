@@ -50,6 +50,21 @@ public:
 	void SetUniform1f(int iUniform, float fValue);
 	void SetUniform1f(const char* szUniform, float fValue);
 
+	void SetUniform2f(int iUniform, const Vector2f &v);
+	void SetUniform2f(const char* szUniform, const Vector2f &v);
+
+	void SetUniform3f(int iUniform, const Vector3f &v);
+	void SetUniform3f(const char* szUniform, const Vector3f &v);
+
+	void SetUniform3f(int iUniform, COLOR col);
+	void SetUniform3f(const char* szUniform, COLOR col);
+
+	void SetUniform4f(int iUniform, const Vector4f &v);
+	void SetUniform4f(const char* szUniform, const Vector4f &v);
+
+	void SetUniform4f(int iUniform, COLOR col);
+	void SetUniform4f(const char* szUniform, COLOR col);
+
 	void SetUniformSampler(int iUniform, CTexture &texture);
 	void SetUniformSampler(const char* szUniform, CTexture &texture);
 

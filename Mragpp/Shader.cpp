@@ -199,6 +199,65 @@ void CShader::SetUniform1f(const char* szUniform, float fValue)
 	SetUniform1f(GetUniform(szUniform), fValue);
 }
 
+void CShader::SetUniform2f(int iUniform, const Vector2f &v)
+{
+	ASSERT(iUniform != -1);
+	glUniform2f(iUniform, v(1), v(2));
+}
+
+void CShader::SetUniform2f(const char* szUniform, const Vector2f &v)
+{
+	SetUniform2f(GetUniform(szUniform), v);
+}
+
+void CShader::SetUniform3f(int iUniform, const Vector3f &v)
+{
+	ASSERT(iUniform != -1);
+	glUniform3f(iUniform, v(1), v(2), v(3));
+}
+
+void CShader::SetUniform3f(const char* szUniform, const Vector3f &v)
+{
+	SetUniform3f(GetUniform(szUniform), v);
+}
+
+void CShader::SetUniform3f(int iUniform, COLOR col)
+{
+	ASSERT(iUniform != -1);
+	COLOR_VALUE r, g, b;
+	MRAG_COLOR_EXPLODE_RGB(col, r, g, b);
+	glUniform3f(iUniform, r / 255.0f, g / 255.0f, b / 255.0f);
+}
+
+void CShader::SetUniform3f(const char* szUniform, COLOR col)
+{
+	SetUniform3f(GetUniform(szUniform), col);
+}
+
+void CShader::SetUniform4f(int iUniform, const Vector4f &v)
+{
+	ASSERT(iUniform != -1);
+	glUniform4f(iUniform, v(1), v(2), v(3), v(4));
+}
+
+void CShader::SetUniform4f(const char* szUniform, const Vector4f &v)
+{
+	SetUniform4f(GetUniform(szUniform), v);
+}
+
+void CShader::SetUniform4f(int iUniform, COLOR col)
+{
+	ASSERT(iUniform != -1);
+	COLOR_VALUE r, g, b, a;
+	MRAG_COLOR_EXPLODE_RGBA(col, r, g, b, a);
+	glUniform4f(iUniform, r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+}
+
+void CShader::SetUniform4f(const char* szUniform, COLOR col)
+{
+	SetUniform4f(GetUniform(szUniform), col);
+}
+
 void CShader::SetUniformSampler(int iUniform, CTexture &texture)
 {
 	ASSERT(iUniform != -1);
