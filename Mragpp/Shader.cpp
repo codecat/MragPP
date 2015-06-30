@@ -17,6 +17,8 @@ MRAGPP_NAMESPACE_BEGIN;
 
 CShader::CShader()
 {
+	sha_bReady = false;
+
 	sha_iProgram = 0;
 	sha_iShaderVertex = 0;
 	sha_iShaderFragment = 0;
