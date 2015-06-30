@@ -73,6 +73,20 @@ inline Vector2f ParseVector2f(const Scratch::String &str)
   return Vector2f((float)atof(parse[0]), (float)atof(parse[1]));
 }
 
+inline Vector3f ParseVector3f(const Scratch::String &str)
+{
+	Scratch::StackArray<Scratch::String> parse;
+	str.Split(",", parse, TRUE);
+	return Vector3f((float)atof(parse[0]), (float)atof(parse[1]), (float)atof(parse[2]));
+}
+
+inline Vector4f ParseVector4f(const Scratch::String &str)
+{
+	Scratch::StackArray<Scratch::String> parse;
+	str.Split(",", parse, TRUE);
+	return Vector4f((float)atof(parse[0]), (float)atof(parse[1]), (float)atof(parse[2]), (float)atof(parse[3]));
+}
+
 MRAGPP_NAMESPACE_END;
 
 #include "Vector.cpp"
