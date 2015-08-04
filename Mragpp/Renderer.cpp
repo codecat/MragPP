@@ -31,32 +31,18 @@ CRenderer::~CRenderer()
 
 void CRenderer::Create(CWindow &window)
 {
-  ren_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
-  glEnable(GL_MULTISAMPLE);
-
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
-
-  static bool _bInitializedGlew = false;
-  if(!_bInitializedGlew) {
-    glewExperimental = GL_TRUE;
-    GLenum err = glewInit();
-    if(err != GLEW_OK) {
-      printf("Glew initialization error: %d\n", err);
-    }
-    _bInitializedGlew = true;
-  }
+	ren_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
   if(ren_pRenderer == 0) {
     printf("SDL renderer creation error: '%s'\n", SDL_GetError());
     return;
-  }
+	}
+
+	printf("GL version after creating renderer: '%s'\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 }
 
 void CRenderer::Destroy()
