@@ -49,7 +49,7 @@ void CShaderExample::Initialize()
 	m_shader.LinkProgram(this);
 
 	// load a texture
-	m_texture.Load(Renderer, "texture.png");
+	m_texture.Load(Renderer, "avatar.png");
 
 	CGame::Initialize();
 }
