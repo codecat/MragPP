@@ -6,9 +6,11 @@ function(example name)
 		../src/Scratch/src/)
 endfunction()
 
-example(basic)
-example(atlas)
-example(spine)
-example(sound)
-example(music)
-example(shader)
+example(basic) # 01
+example(atlas) # 02
+example(spine) # 03
+example(sound) # 04
+example(music) # 05
+example(shader) # 06
+example(cubes) # 07
+example(textures) # 08
