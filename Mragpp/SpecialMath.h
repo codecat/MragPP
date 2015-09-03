@@ -67,6 +67,11 @@ inline float mthCeilF(float x)
   return (float)ceil((long double)x);
 }
 
+inline int mthRndi()
+{
+  return rand();
+}
+
 inline float mthRndf()
 {
   return (float)rand() / (float)RAND_MAX;
