@@ -30,6 +30,8 @@ public:
   Scratch::StackArray<XmlTag> Children;
 
   XmlTag();
+  XmlTag(const XmlTag &copy); // copy constructor does not copy parent nor children
+  XmlTag &operator=(const XmlTag &copy);
   XmlTag(XmlTag* parent);
   ~XmlTag();
 

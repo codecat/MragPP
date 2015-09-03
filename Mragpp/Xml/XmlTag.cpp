@@ -14,6 +14,23 @@ XmlTag::XmlTag()
   Attributes.dic_bAllowDuplicateKeys = TRUE;
 }
 
+XmlTag::XmlTag(const XmlTag &copy)
+{
+  operator=(copy);
+}
+
+XmlTag &XmlTag::operator=(const XmlTag &copy)
+{
+  IsValid = copy.IsValid;
+  Name = copy.Name;
+  Value = copy.Value;
+  IsComment = copy.IsComment;
+  Attributes = copy.Attributes;
+
+  // Don't copy parent or children
+  Parent = 0;
+}
+
 XmlTag::XmlTag(XmlTag* parent)
 {
   SetParent(parent);
